@@ -1,0 +1,115 @@
+---
+# This play performs the work to collect data from network devices in the
+# network and store it in individual files.
+- name: "Get information from network devices"
+  hosts: devices
+  vars_files:
+    - "login_creds.vault"
+  tasks:
+
+    # Begin by checking to ensure every device has defined necessary vars
+    - name: "SYS >> Perform basic error checking on core variables"
+      assert:
+        that:
+          - "device_type is defined and device_type"
+          - "command_list is defined and command_list"
+          - "scp is defined and scp"
+          - "scp.user is defined and scp.user"
+          - "scp.host is defined and scp.host"
+          - "archive_format is defined and archive_format"
+          - "remove_files == true or remove_files == false"
+        msg: "Basic variables defined incorrectly, please see README"
+
+    # Capture the date/time group for timestamping the data written
+    # to files later in the playbook.
+    - name: "BLOCK >> Capture date/time only once"
+      block:
+        - name: "LOG >> Get ansible date/time facts"
+          setup:
+            filter: "ansible_date_time"
+            gather_subset: "!all"
+
+        - name: "LOG >> Store DTG as fact"
+          set_fact:
+            DTG: "{{ ansible_date_time.iso8601_basic_short }}"
+      run_once: true
+
+    # Identify the file string for file names to simplify references
+    # later in the process.
+    - name: "SYS >> Store <hostname_DTG> string per network device"
+      set_fact:
+        FILE_STRING: "{{ inventory_hostname }}_{{ DTG }}"
+
+    # Identify the output directory string for file names to simplify
+    # references later in the process.
+    - name: "SYS >> Store output directory"
+      set_fact:
+        OUTPUT_DIR: "files/{{ FILE_STRING }}/"
+
+    # Each host gets a directory to house the files relevant to that
+    # host. For example, if we collect the config, version, and
+    # inventory from a router, there would be 3 files in a folder
+    # representing that host.
+    - name: "SYS >> Create directory per network device"
+      file:
+        path: "{{ OUTPUT_DIR }}"
+        state: directory
+
+    # Include the proper task list based on the device type.
+    - name: "Include tasks for various network device types"
+      include_tasks: "tasks/{{ device_type }}.yml"
+
+    # All task files should have defined the CLI_OUTPUT variable which
+    # contains the CLI output lines from each command. The play cannot
+    # continue unless this variable is populated.
+    - name: "SYS >> Sanity check; ensure CLI_OUTPUT is defined"
+      assert:
+        that: "CLI_OUTPUT is defined and CLI_OUTPUT"
+        msg: "CLI_OUTPUT was not populated from device task include"
+
+    # With the directory created, use the 'commands' template to write the
+    # command output to disk within the specified folder.
+    - name: "SYS >> Write network CLI output to disk"
+      template:
+        src: "templates/commands.j2"
+        dest: "{{ OUTPUT_DIR }}{{ FILE_STRING }}_{{ item.0.file_suffix }}.txt"
+      with_together:
+        - "{{ command_list }}"
+        - "{{ CLI_OUTPUT.results }}"
+      loop_control:
+        label: "{{ item.0.file_suffix }}"
+
+    - name: "BLOCK >> Post-processing on control machine"
+      block:
+        # Store the string file path of the future archive to simplify
+        # variable references later in the process.
+        - name: "SYS >> Store archive path/filename"
+          set_fact:
+            ARCH_FQDN: "archives/commands_{{ DTG }}.{{ archive_format }}"
+
+        # Zip up all of the individual text files into an archive and
+        # optionally remove the source files if 'remove_files' is true.
+        - name: "SYS >> Archive files into a {{ archive_format }}"
+          archive:
+            dest: "{{ ARCH_FQDN }}"
+            path: "files/*{{ DTG }}"
+            format: "{{ archive_format }}"
+            remove: "{{ remove_files }}"
+
+        # Users can optionally copy the ZIP bundle to a WANMGR by copying
+        # the SCP command written to stdout for simplicity.
+        - name: "SYS >> Copy the command below to SCP the archive off-box"
+          debug:
+            msg: "scp {{ ARCH_FQDN }} {{ scp.user }}@{{ scp.host }}:/racc/"
+      run_once: true
+      delegate_to: localhost
+      delegate_facts: true
+
+    # Final cleanup; delete empty directories from files/ when Boolean
+    # remove_files is true. The archive module does not do this automatically.
+    - name: "SYS >> Remove network device directory? {{ remove_files }}"
+      file:
+        path: "{{ OUTPUT_DIR }}"
+        state: absent
+      when: "remove_files"
+...

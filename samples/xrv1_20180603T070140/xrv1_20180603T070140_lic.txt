@@ -1,0 +1,14 @@
+!!!
+!!! BEGIN OUTPUT FROM: show license all
+!!!
+Smart Licensing Status
+======================
+
+Smart Licensing is DISABLED
+
+Agent Version
+=============
+Smart Agent for Licensing: 2.2.0_rel/30
+!!!
+!!!   END OUTPUT FROM: show license all
+!!!

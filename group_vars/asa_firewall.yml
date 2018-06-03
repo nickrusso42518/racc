@@ -1,0 +1,11 @@
+---
+# Tip: default ASAv username is 'admin' on AWS
+device_type: "asa"
+command_list:
+  - file_suffix: "cfg"
+    command: "show running-config"
+  - file_suffix: "inv"
+    command: "show inventory"
+  - file_suffix: "ver"
+    command: "show version"
+...

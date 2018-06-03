@@ -1,0 +1,56 @@
+!!!
+!!! BEGIN OUTPUT FROM: show version
+!!!
+Cisco Adaptive Security Appliance Software Version 9.9(2)1 
+Firepower Extensible Operating System Version 2.3(1.84)
+Device Manager Version 7.9(2)
+
+Compiled on Thu 05-Apr-18 10:31 PDT by builders
+System image file is "boot:/asa992-1-smp-k8.bin"
+Config file at boot was "startup-config"
+
+ASAV1 up 15 mins 50 secs
+
+Hardware:   ASAv, 8192 MB RAM, CPU Xeon E5 series 2300 MHz, 1 CPU (2 cores)
+Model Id:   ASAv10
+Internal ATA Compact Flash, 10240MB
+Slot 1: ATA Compact Flash, 10240MB
+BIOS Flash Firmware Hub @ 0x0, 0KB
+
+
+ 0: Ext: Management0/0       : address is 12f6.e815.3dc0, irq 0
+
+License mode: Smart Licensing
+ASAv Platform License State: Unlicensed
+No active entitlement: no feature tier and no throughput level configured
+Installed license is insufficient for the instance type deployed.
+
+Licensed features for this platform:
+Maximum VLANs                     : 50             
+Inside Hosts                      : Unlimited      
+Failover                          : Active/Standby 
+Encryption-DES                    : Enabled        
+Encryption-3DES-AES               : Enabled        
+Security Contexts                 : 0              
+Carrier                           : Disabled       
+AnyConnect Premium Peers          : 2              
+AnyConnect Essentials             : Disabled       
+Other VPN Peers                   : 250            
+Total VPN Peers                   : 250            
+AnyConnect for Mobile             : Disabled       
+AnyConnect for Cisco VPN Phone    : Disabled       
+Advanced Endpoint Assessment      : Disabled       
+Shared License                    : Disabled       
+Total TLS Proxy Sessions          : 2              
+Botnet Traffic Filter             : Enabled        
+Cluster                           : Disabled       
+
+Serial Number: 9AB9BV0WETF
+
+Image type          : Release
+Key version         : A
+
+Configuration last modified by enable_15 at 10:56:05.099 UTC Sun Jun 3 2018
+!!!
+!!!   END OUTPUT FROM: show version
+!!!

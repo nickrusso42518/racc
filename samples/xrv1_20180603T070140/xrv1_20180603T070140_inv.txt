@@ -1,0 +1,17 @@
+!!!
+!!! BEGIN OUTPUT FROM: show inventory
+!!!
+NAME: "0/0", DESCR: "Cisco XRv9K Centralized Line Card"
+PID: R-IOSXRV9000-LC-C , VID: V01, SN: 5E1AA3761EC
+
+NAME: "0/0/0", DESCR: "N/A"
+PID: SFP-10G-NIC-X     , VID: N/A, SN: N/A
+
+NAME: "0/RP0", DESCR: "Cisco XRv9K Centralized Route Processor"
+PID: R-IOSXRV9000-RP-C , VID: V01, SN: 92767DD3A07
+
+NAME: "Rack 0", DESCR: "Cisco XRv9K Centralized Virtual Router"
+PID: R-IOSXRV9000-CC   , VID: V01, SN: A8389029DC9
+!!!
+!!!   END OUTPUT FROM: show inventory
+!!!

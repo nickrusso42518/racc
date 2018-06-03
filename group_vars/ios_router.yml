@@ -1,0 +1,13 @@
+---
+# Tip: default CSR1000v username is 'ec2-user' on AWS
+device_type: "ios"
+command_list:
+  - file_suffix: "cfg"
+    command: "show running-config"
+  - file_suffix: "inv"
+    command: "show inventory"
+  - file_suffix: "lic"
+    command: "show license all"
+  - file_suffix: "ver"
+    command: "show version"
+...

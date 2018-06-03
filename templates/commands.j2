@@ -1,0 +1,10 @@
+#jinja2: newline_sequence:'\r\n'
+!!!
+!!! BEGIN OUTPUT FROM: {{ item.0.command }}
+!!!
+{% for line in item.1.stdout_lines[0] -%}
+{{ line }}
+{% endfor %}
+!!!
+!!!   END OUTPUT FROM: {{ item.0.command }}
+!!!

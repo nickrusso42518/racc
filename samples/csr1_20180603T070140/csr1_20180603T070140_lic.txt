@@ -1,0 +1,7 @@
+!!!
+!!! BEGIN OUTPUT FROM: show license all
+!!!
+License Store: Primary License Storage
+!!!
+!!!   END OUTPUT FROM: show license all
+!!!

@@ -1,0 +1,34 @@
+!!!
+!!! BEGIN OUTPUT FROM: show running-config
+!!!
+Building configuration...
+!! IOS XR Configuration version = 6.3.1
+!! Last configuration change at Sun Jun  3 11:00:23 2018 by root
+!
+hostname XRV1
+username root
+ group root-lr
+ group cisco-support
+!
+username ********
+ group root-lr
+ group cisco-support
+ password 7 12180B041B090001
+!
+interface Loopback0
+ ipv4 address 10.0.0.3 255.255.255.255
+!
+interface TenGigE0/0/0/0
+ ipv4 address 10.125.0.63 255.255.255.0
+!
+router static
+ address-family ipv4 unicast
+  0.0.0.0/0 10.125.0.1
+ !
+!
+ssh server v2
+ssh server vrf default
+end
+!!!
+!!!   END OUTPUT FROM: show running-config
+!!!
