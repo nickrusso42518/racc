@@ -96,7 +96,7 @@
             format: "{{ archive_format }}"
             remove: "{{ remove_files }}"
 
-        # Users can optionally copy the ZIP bundle to a WANMGR by copying
+        # Users can optionally copy the ZIP bundle to an SCP server by copying
         # the SCP command written to stdout for simplicity.
         - name: "SYS >> Copy the command below to SCP the archive off-box"
           debug:
