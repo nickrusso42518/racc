@@ -8,6 +8,4 @@
   with_items: "{{ command_list }}"
   loop_control:
     label: "{{ item.command }}"
-
-- debug: var=CLI_OUTPUT
 ...
