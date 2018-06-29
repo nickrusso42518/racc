@@ -1,3 +1,7 @@
+[![Build Status](
+https://travis-ci.org/nickrusso42518/racc.svg?branch=master)](
+https://travis-ci.org/nickrusso42518/racc)
+
 # Run Arbitrary CLI Commands (racc)
 This playbook runs arbitrary commands on a given node, stores the
 output in a flat text file, and archives the entire "run" in an archive
@@ -25,6 +29,7 @@ Testing was conducted on the following platforms and versions:
   * Cisco CSR1000v, version 16.08.01a, running in AWS
   * Cisco XRv9000, version 6.3.1, running in AWS
   * Cisco ASAv, version 9.9.1, running in AWS
+  * Cisco 3172T, version 6.0.2.U6.4a, hardware appliance
 
 ```
 $ cat /etc/redhat-release
