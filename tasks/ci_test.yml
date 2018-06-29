@@ -1,0 +1,15 @@
+---
+- name: "SYS >> Initialize the results list to simplify the next step"
+  set_fact:
+    CLI_OUTPUT:
+      results: []
+
+- name: "SYS >> Create mock output for each command with the proper structure"
+  set_fact:
+    CLI_OUTPUT:
+      results: "{{ CLI_OUTPUT.results }} + [{'stdout_lines': [['1', '2']]}]"
+  with_items: "{{ command_list }}"
+
+- name: "DEBUG >> Print CLI_OUTPUT for verification"
+  debug: var=CLI_OUTPUT
+...

@@ -10,7 +10,5 @@ before_script:
 
 # Run the role playbook with mock inputs to validate the role functionality.
 script:
-  # - "ansible-playbook tests/test_playbook.yml -i tests/inventory.yml"
-  # coming soon!
-  - "/bin/true"
+  - "ansible-playbook tests/test_playbook.yml"
 ...

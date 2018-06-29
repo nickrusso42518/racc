@@ -56,16 +56,33 @@
         state: directory
 
     # Include the proper task list based on the device type.
-    - name: "Include tasks for various network device types"
+    # All tasks will register outputs to 'CLI_OUTPUT' which
+    # must have a 'stdout_lines' 2D array of strings.
+    - name: "SYS >> Include tasks for various network device types"
       include_tasks: "tasks/{{ device_type }}.yml"
+      when: "not ci_test"
+
+    # Include the CI testing task which builds mock data in the
+    # correct format that the jinja2 template expects. This ensures
+    # that the CLI_OUTPUT.results and command_list sequences
+    # are always the same length and remain in sync.
+    - name: "SYS >> Include tasks to generate mock output for CI"
+      include_tasks: "tasks/ci_test.yml"
+      when: "ci_test"
 
     # All task files should have defined the CLI_OUTPUT variable which
     # contains the CLI output lines from each command. The play cannot
-    # continue unless this variable is populated.
-    - name: "SYS >> Sanity check; ensure CLI_OUTPUT is defined"
+    # continue unless this variable has been validated, which includes
+    # ensuring it exists, is a list, and has the proper length for
+    # future iteration.
+    - name: "SYS >> Sanity check; ensure CLI_OUTPUT is valid"
       assert:
-        that: "CLI_OUTPUT is defined and CLI_OUTPUT"
-        msg: "CLI_OUTPUT was not populated from device task include"
+        that:
+          - "CLI_OUTPUT is defined and CLI_OUTPUT"
+          - "CLI_OUTPUT.results is defined"
+          - "CLI_OUTPUT.results is sequence"
+          - "CLI_OUTPUT.results | length == command_list | length"
+        msg: "CLI_OUTPUT or its sub data structures are invalid, see debugs"
 
     # With the directory created, use the 'commands' template to write the
     # command output to disk within the specified folder.
