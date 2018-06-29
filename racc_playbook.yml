@@ -21,8 +21,10 @@
         msg: "Basic variables defined incorrectly, please see README"
 
     # Capture the date/time group for timestamping the data written
-    # to files later in the playbook.
-    - name: "BLOCK >> Capture date/time only once"
+    # to files later in the playbook. Also, create the files/ and
+    # archives/ directories which is especially important for first-time
+    # runs in CI systems.
+    - name: "BLOCK >> Capture date/time and create core directories only once"
       block:
         - name: "LOG >> Get ansible date/time facts"
           setup:
@@ -32,6 +34,14 @@
         - name: "LOG >> Store DTG as fact"
           set_fact:
             DTG: "{{ ansible_date_time.iso8601_basic_short }}"
+
+        - name: "SYS >> Create files/ and archives/ directories"
+          file:
+            path: "{{ item }}"
+            state: directory
+          with_items:
+            - "archives"
+            - "files"
       run_once: true
 
     # Identify the file string for file names to simplify references
