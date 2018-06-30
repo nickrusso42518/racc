@@ -8,8 +8,8 @@ output in a flat text file, and archives the entire "run" in an archive
 file for easy copying to management stations via SCP. It is generally used
 for configuration backups, hardware inventory, and license information.
 
-> Contact information:
-> Email:    njrusmc@gmail.com
+> Contact information:\
+> Email:    njrusmc@gmail.com\
 > Twitter:  @nickrusso42518
 
   * [Supported platforms](#supported-platforms)
