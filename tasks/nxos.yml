@@ -2,7 +2,6 @@
 # Log in and run the commands specified in the group_vars/ files.
 - name: "NXOS >> Gather Cisco NXOS information"
   ios_command:
-    provider: "{{ login_creds }}"
     commands: "{{ item.command }}"
   register: CLI_OUTPUT
   with_items: "{{ command_list }}"

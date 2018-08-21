@@ -7,4 +7,5 @@
 - import_playbook: "../racc_playbook.yml"
   vars:
     ci_test: true
+    ansible_connection: "local"
 ...

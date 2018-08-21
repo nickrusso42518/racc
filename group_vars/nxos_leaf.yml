@@ -1,5 +1,5 @@
 ---
-device_type: "nxos"
+ansible_network_os: "nxos"
 command_list:
   - file_suffix: "inv"
     command: "show inventory"

@@ -39,10 +39,10 @@ $ uname -a
 Linux ip-10-125-0-100.ec2.internal 3.10.0-693.el7.x86_64 #1 SMP
   Thu Jul 6 19:56:57 EDT 2017 x86_64 x86_64 x86_64 GNU/Linux
 
-$ ansible --version
-ansible 2.4.3.0
-  config file = /etc/ansible/ansible.cfg
-  configured module search path = [u'/usr/share/my_modules']
+$ ansible 2.6.2
+  config file = /home/ec2-user/racc/ansible.cfg
+  configured module search path = [u'/home/ec2-user/.ansible/plugins/modules',
+    u'/usr/share/ansible/plugins/modules']
   ansible python module location = /usr/lib/python2.7/site-packages/ansible
   executable location = /usr/bin/ansible
   python version = 2.7.5 (default, May  3 2017, 07:55:04)

@@ -1,6 +1,6 @@
 ---
 # Tip: default XRv9000 username is 'root' on AWS
-device_type: "iosxr"
+ansible_network_os: "iosxr"
 command_list:
   - file_suffix: "cfg"
     command: "show running-config"

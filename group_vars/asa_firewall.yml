@@ -1,6 +1,6 @@
 ---
 # Tip: default ASAv username is 'admin' on AWS
-device_type: "asa"
+ansible_network_os: "asa"
 command_list:
   - file_suffix: "cfg"
     command: "show running-config"

@@ -3,15 +3,13 @@
 # network and store it in individual files.
 - name: "Get information from network devices"
   hosts: devices
-  vars_files:
-    - "login_creds.vault"
   tasks:
 
     # Begin by checking to ensure every device has defined necessary vars
     - name: "SYS >> Perform basic error checking on core variables"
       assert:
         that:
-          - "device_type is defined and device_type"
+          - "ansible_network_os is defined and ansible_network_os"
           - "command_list is defined and command_list"
           - "scp is defined and scp"
           - "scp.user is defined and scp.user"
@@ -69,7 +67,7 @@
     # All tasks will register outputs to 'CLI_OUTPUT' which
     # must have a 'stdout_lines' 2D array of strings.
     - name: "SYS >> Include tasks for various network device types"
-      include_tasks: "tasks/{{ device_type }}.yml"
+      include_tasks: "tasks/{{ ansible_network_os }}.yml"
       when: "not ci_test"
 
     # Include the CI testing task which builds mock data in the
