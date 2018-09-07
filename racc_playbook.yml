@@ -10,6 +10,7 @@
       assert:
         that:
           - "ansible_network_os is defined and ansible_network_os"
+          - "ansible_connection in ['network_cli', 'local']"
           - "command_list is defined and command_list"
           - "scp is defined and scp"
           - "scp.user is defined and scp.user"

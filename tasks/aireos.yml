@@ -1,0 +1,11 @@
+---
+# Log in and run the commands specified in the group_vars/ files.
+- name: "AIREOS >> Gather Cisco AireOS WLC information"
+  aireos_command:
+    provider: "{{ legacy_creds }}"
+    commands: "{{ item.command }}"
+  register: CLI_OUTPUT
+  with_items: "{{ command_list }}"
+  loop_control:
+    label: "{{ item.command }}"
+...
