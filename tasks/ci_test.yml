@@ -11,5 +11,6 @@
   with_items: "{{ command_list }}"
 
 - name: "DEBUG >> Print CLI_OUTPUT for verification"
-  debug: var=CLI_OUTPUT
+  debug:
+    var: CLI_OUTPUT
 ...
