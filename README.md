@@ -2,6 +2,10 @@
 https://travis-ci.org/nickrusso42518/racc.svg?branch=master)](
 https://travis-ci.org/nickrusso42518/racc)
 
+[![published](
+http://cs.co/codeex-badge)](
+https://developer.cisco.com/codeexchange/github/repo/nickrusso42518/racc)
+
 # Run Arbitrary CLI Commands (racc)
 This playbook runs arbitrary commands on a given node, stores the
 output in a flat text file, and archives the entire "run" in an archive
