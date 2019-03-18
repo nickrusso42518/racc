@@ -27,6 +27,7 @@ These are all easy tasks given the abstract architecture of this playbook.
 
 Testing was conducted on the following platforms and versions:
   * Cisco CSR1000v, version 16.08.01a, running in AWS
+  * Cisco CSR1000v, version 16.09.02, running in AWS
   * Cisco XRv9000, version 6.3.1, running in AWS
   * Cisco ASAv, version 9.9.1, running in AWS
   * Cisco Nexus 3172T, version 6.0.2.U6.4a, hardware appliance
@@ -43,12 +44,14 @@ Linux ip-10-125-0-100.ec2.internal 3.10.0-693.el7.x86_64 #1 SMP
 $ ansible --version
 ansible 2.6.2
   config file = /home/ec2-user/natm/ansible.cfg
-  configured module search path = [u'/home/ec2-user/.ansible/plugins/modules',
-    u'/usr/share/ansible/plugins/modules']
-  ansible python module location = /usr/lib/python2.7/site-packages/ansible
-  executable location = /usr/bin/ansible
-  python version = 2.7.5 (default, May  3 2017, 07:55:04)
-    [GCC 4.8.5 20150623 (Red Hat 4.8.5-14)]
+  configured module search path =
+    ['/home/ec2-user/.ansible/plugins/modules',
+     '/usr/share/ansible/plugins/modules']
+  ansible python module location =
+    /home/ec2-user/environments/a262/lib64/python3.6/site-packages/ansible
+  executable location = /home/ec2-user/environments/a262/bin/ansible
+  python version = 3.6.7 (default, Dec  5 2018, 15:02:05)
+    [GCC 4.8.5 20150623 (Red Hat 4.8.5-36)]
 ```
 
 ## Variables

@@ -8,7 +8,7 @@
   set_fact:
     CLI_OUTPUT:
       results: "{{ CLI_OUTPUT.results }} + [{'stdout_lines': [['1', '2']]}]"
-  with_items: "{{ command_list }}"
+  loop: "{{ command_list }}"
 
 - name: "DEBUG >> Print CLI_OUTPUT for verification"
   debug:

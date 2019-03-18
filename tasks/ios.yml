@@ -4,7 +4,7 @@
   ios_command:
     commands: "{{ item.command }}"
   register: CLI_OUTPUT
-  with_items: "{{ command_list }}"
+  loop: "{{ command_list }}"
   loop_control:
     label: "{{ item.command }}"
 ...

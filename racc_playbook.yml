@@ -4,65 +4,9 @@
 - name: "Get information from network devices"
   hosts: devices
   tasks:
-
-    # Begin by checking to ensure every device has defined necessary vars
-    - name: "SYS >> Perform basic error checking on core variables"
-      assert:
-        that:
-          - "ansible_network_os is defined and ansible_network_os"
-          - "ansible_connection in ['network_cli', 'local']"
-          - "command_list is defined and command_list"
-          - "scp is defined and scp"
-          - "scp.user is defined and scp.user"
-          - "scp.host is defined and scp.host"
-          - "archive_format is defined and archive_format"
-          - "remove_files == true or remove_files == false"
-        msg: "Basic variables defined incorrectly, please see README"
-
-    # Capture the date/time group for timestamping the data written
-    # to files later in the playbook. Also, create the files/ and
-    # archives/ directories which is especially important for first-time
-    # runs in CI systems.
-    - name: "BLOCK >> Capture date/time and create core directories only once"
-      block:
-        - name: "LOG >> Get ansible date/time facts"
-          setup:
-            filter: "ansible_date_time"
-            gather_subset: "!all"
-
-        - name: "LOG >> Store DTG as fact"
-          set_fact:
-            DTG: "{{ ansible_date_time.iso8601_basic_short }}"
-
-        - name: "SYS >> Create files/ and archives/ directories"
-          file:
-            path: "{{ item }}"
-            state: directory
-          with_items:
-            - "archives"
-            - "files"
-      run_once: true
-
-    # Identify the file string for file names to simplify references
-    # later in the process.
-    - name: "SYS >> Store <hostname_DTG> string per network device"
-      set_fact:
-        FILE_STRING: "{{ inventory_hostname }}_{{ DTG }}"
-
-    # Identify the output directory string for file names to simplify
-    # references later in the process.
-    - name: "SYS >> Store output directory"
-      set_fact:
-        OUTPUT_DIR: "files/{{ FILE_STRING }}/"
-
-    # Each host gets a directory to house the files relevant to that
-    # host. For example, if we collect the config, version, and
-    # inventory from a router, there would be 3 files in a folder
-    # representing that host.
-    - name: "SYS >> Create directory per network device"
-      file:
-        path: "{{ OUTPUT_DIR }}"
-        state: directory
+    # Perform data validation and timestamp/directory setup
+    - name: "INCLUDE >> Error checking and log setup"
+      include_tasks: "tasks/pre_check.yml"
 
     # Include the proper task list based on the device type.
     # All tasks will register outputs to 'CLI_OUTPUT' which
@@ -99,9 +43,7 @@
       template:
         src: "templates/commands.j2"
         dest: "{{ OUTPUT_DIR }}{{ FILE_STRING }}_{{ item.0.file_suffix }}.txt"
-      with_together:
-        - "{{ command_list }}"
-        - "{{ CLI_OUTPUT.results }}"
+      loop: "{{ command_list | zip(CLI_OUTPUT.results) | list }}"
       loop_control:
         label: "{{ item.0.file_suffix }}"
 
