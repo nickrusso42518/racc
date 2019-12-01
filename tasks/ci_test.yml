@@ -12,5 +12,5 @@
 
 - name: "DEBUG >> Print CLI_OUTPUT for verification"
   debug:
-    var: CLI_OUTPUT
+    var: "CLI_OUTPUT"
 ...

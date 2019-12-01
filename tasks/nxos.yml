@@ -3,7 +3,7 @@
 - name: "NXOS >> Gather Cisco NXOS information"
   nxos_command:
     commands: "{{ item.command }}"
-  register: CLI_OUTPUT
+  register: "CLI_OUTPUT"
   loop: "{{ command_list }}"
   loop_control:
     label: "{{ item.command }}"

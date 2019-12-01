@@ -33,7 +33,7 @@
         - name: "SYS >> Create files/ and archives/ directories"
           file:
             path: "{{ item }}"
-            state: directory
+            state: "directory"
           loop:
             - "archives"
             - "files"
@@ -58,6 +58,6 @@
     - name: "SYS >> Create directory per network device"
       file:
         path: "{{ OUTPUT_DIR }}"
-        state: directory
+        state: "directory"
 
-  delegate_to: localhost
+  delegate_to: "localhost"

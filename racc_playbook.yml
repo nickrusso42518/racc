@@ -2,7 +2,7 @@
 # This play performs the work to collect data from network devices in the
 # network and store it in individual files.
 - name: "Get information from network devices"
-  hosts: devices
+  hosts: "devices"
   tasks:
     # Perform data validation and timestamp/directory setup
     - name: "INCLUDE >> Error checking and log setup"
@@ -46,6 +46,7 @@
       loop: "{{ command_list | zip(CLI_OUTPUT.results) | list }}"
       loop_control:
         label: "{{ item.0.file_suffix }}"
+      delegate_to: "localhost"
 
     - name: "BLOCK >> Post-processing on control machine"
       block:
@@ -70,14 +71,13 @@
           debug:
             msg: "scp {{ ARCH_FQDN }} {{ scp.user }}@{{ scp.host }}:/racc/"
       run_once: true
-      delegate_to: localhost
-      delegate_facts: true
+      delegate_to: "localhost"
 
     # Final cleanup; delete empty directories from files/ when Boolean
     # remove_files is true. The archive module does not do this automatically.
     - name: "SYS >> Remove network device directory? {{ remove_files }}"
       file:
         path: "{{ OUTPUT_DIR }}"
-        state: absent
+        state: "absent"
       when: "remove_files"
 ...
