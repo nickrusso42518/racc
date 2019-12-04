@@ -2,6 +2,7 @@
 # The default connectivity variables are below. This playbook assumes that all
 # network modules support the 'network_cli' connection method; those that do
 # not can use the legacy provider credentials below with 'local' connection.
+ansible_python_interpreter: "/usr/bin/env python"
 ansible_connection: "network_cli"
 ansible_user: "ansible"
 ansible_password: !vault |
