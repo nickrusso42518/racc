@@ -11,6 +11,8 @@ install:
 # If any of these tasks fail, the entire build fails immediately.
 before_script:
   - "find . -name '*.yml' | xargs yamllint -s"
+  - "ansible-lint racc_playbook.yml"
+  - "ansible-lint tests/test_playbook.yml"
   - "echo 'brkrst3310' >> ~/vault_pass_file.txt"
 
 # Run the role playbook with mock inputs to validate the role functionality.
