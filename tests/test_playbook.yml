@@ -1,3 +1,4 @@
+#!/usr/bin/env ansible-playbook
 ---
 # Simple wrapper to call the main playbook with 'ci_test' set to true.
 # Because this particular playbook does not require dedicated test

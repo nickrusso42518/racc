@@ -1,3 +1,4 @@
+#!/usr/bin/env ansible-playbook
 ---
 # This play performs the work to collect data from network devices in the
 # network and store it in individual files.
