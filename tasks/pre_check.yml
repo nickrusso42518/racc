@@ -12,7 +12,7 @@
           - "scp.user is defined and scp.user"
           - "scp.host is defined and scp.host"
           - "archive_format is defined and archive_format"
-          - "remove_files == true or remove_files == false"
+          - "remove_files is defined"
         msg: "Basic variables defined incorrectly, please see README"
 
     # Capture the date/time group for timestamping the data written
