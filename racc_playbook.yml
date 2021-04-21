@@ -43,6 +43,7 @@
       template:
         src: "templates/commands.j2"
         dest: "{{ OUTPUT_DIR }}{{ FILE_STRING }}_{{ item.0.file_suffix }}.txt"
+        mode: 0640
       loop: "{{ command_list | zip(CLI_OUTPUT.results) | list }}"
       loop_control:
         label: "{{ item.0.file_suffix }}"
@@ -62,6 +63,7 @@
           archive:
             dest: "{{ ARCH_FQDN }}"
             path: "files/*{{ DTG }}"
+            mode: 0640
             format: "{{ archive_format }}"
             remove: "{{ remove_files }}"
 

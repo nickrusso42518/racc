@@ -59,5 +59,6 @@
       file:
         path: "{{ OUTPUT_DIR }}"
         state: "directory"
+        mode: 0750
 
   delegate_to: "localhost"
