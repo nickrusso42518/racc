@@ -1,14 +1,11 @@
-!!!
-!!! BEGIN OUTPUT FROM: show version
-!!!
-Cisco IOS XE Software, Version 16.08.01a
-Cisco IOS Software [Fuji], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.8.1a, RELEASE SOFTWARE (fc1)
+Cisco IOS XE Software, Version 17.03.02
+Cisco IOS Software [Amsterdam], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 17.3.2, RELEASE SOFTWARE (fc3)
 Technical Support: http://www.cisco.com/techsupport
-Copyright (c) 1986-2018 by Cisco Systems, Inc.
-Compiled Tue 03-Apr-18 18:43 by mcpre
+Copyright (c) 1986-2020 by Cisco Systems, Inc.
+Compiled Sat 31-Oct-20 13:16 by mcpre
 
 
-Cisco IOS-XE software, Copyright (c) 2005-2018 by cisco Systems, Inc.
+Cisco IOS-XE software, Copyright (c) 2005-2020 by cisco Systems, Inc.
 All rights reserved.  Certain components of Cisco IOS-XE software are
 licensed under the GNU General Public License ("GPL") Version 2.0.  The
 software code licensed under GPL Version 2.0 is free software that comes
@@ -21,11 +18,11 @@ software.
 
 ROM: IOS-XE ROMMON
 
-CSR1 uptime is 25 minutes
-Uptime for this control processor is 27 minutes
+CSR1 uptime is 1 day, 2 hours, 41 minutes
+Uptime for this control processor is 1 day, 2 hours, 43 minutes
 System returned to ROM by reload
-System image file is "boot:packages.conf"
-Last reload reason: Unknown reason
+System image file is "bootflash:packages.conf"
+Last reload reason: reload
 
 
 
@@ -45,18 +42,20 @@ If you require further assistance please contact us by sending email to
 export@cisco.com.
 
 License Level: ax
-License Type: Default. No valid license found.
+License Type: N/A(Smart License Enabled)
 Next reload license Level: ax
 
-cisco CSR1000V (VXE) processor (revision VXE) with 2185320K/3075K bytes of memory.
-Processor board ID 9VCVGDCB4JW
+The current throughput level is 1000 kbps 
+
+
+Smart Licensing Status: UNREGISTERED/No Licenses in Use
+
+cisco CSR1000V (VXE) processor (revision VXE) with 2068935K/3075K bytes of memory.
+Processor board ID 92ASWZPKBOY
+Router operating mode: Autonomous
 1 Gigabit Ethernet interface
 32768K bytes of non-volatile configuration memory.
-3983676K bytes of physical memory.
-7774207K bytes of virtual hard disk at bootflash:.
-0K bytes of WebUI ODM Files at webui:.
+3976140K bytes of physical memory.
+6188032K bytes of virtual hard disk at bootflash:.
 
 Configuration register is 0x2102
-!!!
-!!!   END OUTPUT FROM: show version
-!!!

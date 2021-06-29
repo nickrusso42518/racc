@@ -1,8 +1,0 @@
-!!!
-!!! BEGIN OUTPUT FROM: show inventory
-!!!
-Name: "Chassis", DESCR: "ASAv Adaptive Security Virtual Appliance"
-PID: ASAv              , VID: V01     , SN: 9AB9BV0WETF
-!!!
-!!!   END OUTPUT FROM: show inventory
-!!!

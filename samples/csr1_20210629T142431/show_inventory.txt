@@ -1,14 +1,8 @@
-!!!
-!!! BEGIN OUTPUT FROM: show inventory
-!!!
 NAME: "Chassis", DESCR: "Cisco CSR1000V Chassis"
-PID: CSR1000V          , VID: V00  , SN: 9I3226J88UC
+PID: CSR1000V          , VID: V00  , SN: 92ASWZPKBOY
 
 NAME: "module R0", DESCR: "Cisco CSR1000V Route Processor"
 PID: CSR1000V          , VID: V00  , SN: JAB1303001C
 
 NAME: "module F0", DESCR: "Cisco CSR1000V Embedded Services Processor"
 PID: CSR1000V          , VID:      , SN:
-!!!
-!!!   END OUTPUT FROM: show inventory
-!!!

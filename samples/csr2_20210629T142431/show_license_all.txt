@@ -1,0 +1,47 @@
+Smart Licensing Status
+======================
+
+Smart Licensing is ENABLED
+
+Registration:
+  Status: UNREGISTERED
+  Export-Controlled Functionality: NOT ALLOWED
+
+License Authorization: 
+  Status: No Licenses in Use
+
+Export Authorization Key:
+  Features Authorized:
+    <none>
+
+Utility:
+  Status: DISABLED
+
+Data Privacy:
+  Sending Hostname: yes
+    Callhome hostname privacy: DISABLED
+    Smart Licensing hostname privacy: DISABLED
+  Version privacy: DISABLED
+
+Transport:
+  Type: Callhome
+
+Miscellaneous:
+  Custom Id: <empty>
+
+License Usage
+=============
+
+No licenses in use
+
+Product Information
+===================
+UDI: PID:CSR1000V,SN:9Z572SUEARL
+
+Agent Version
+=============
+Smart Agent for Licensing: 5.0.6_rel/47
+
+Reservation Info
+================ 
+License reservation: DISABLED

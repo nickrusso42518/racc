@@ -1,37 +1,34 @@
-!!!
-!!! BEGIN OUTPUT FROM: show version
-!!!
-Cisco Adaptive Security Appliance Software Version 9.9(2)1 
-Firepower Extensible Operating System Version 2.3(1.84)
-Device Manager Version 7.9(2)
+Cisco Adaptive Security Appliance Software Version 9.16(1) 
+SSP Operating System Version 2.10(1.159)
+Device Manager Version 7.16(1)
 
-Compiled on Thu 05-Apr-18 10:31 PDT by builders
-System image file is "boot:/asa992-1-smp-k8.bin"
+Compiled on Thu 20-May-21 17:10 GMT by builders
+System image file is "boot:/asa9161-smp-k8.bin"
 Config file at boot was "startup-config"
 
-ASAV1 up 15 mins 50 secs
+ASAV1 up 24 mins 15 secs
 
-Hardware:   ASAv, 8192 MB RAM, CPU Xeon E5 series 2300 MHz, 1 CPU (2 cores)
-Model Id:   ASAv10
+Hardware:   ASAv, 4096 MB RAM, CPU Xeon E5 series 2900 MHz, 1 CPU (2 cores)
 Internal ATA Compact Flash, 10240MB
 Slot 1: ATA Compact Flash, 10240MB
 BIOS Flash Firmware Hub @ 0x0, 0KB
 
 
- 0: Ext: Management0/0       : address is 12f6.e815.3dc0, irq 0
+ 0: Ext: Management0/0       : address is 12af.2e52.3da9, irq 0
+ 1: Int: Internal-Data0/0    : address is 0000.0100.0001, irq 0
 
 License mode: Smart Licensing
 ASAv Platform License State: Unlicensed
 No active entitlement: no feature tier and no throughput level configured
-Installed license is insufficient for the instance type deployed.
+Firewall throughput limited to 100 Kbps
 
 Licensed features for this platform:
 Maximum VLANs                     : 50             
 Inside Hosts                      : Unlimited      
-Failover                          : Active/Standby 
+Failover                          : Active/Active  
 Encryption-DES                    : Enabled        
 Encryption-3DES-AES               : Enabled        
-Security Contexts                 : 0              
+Security Contexts                 : 2              
 Carrier                           : Disabled       
 AnyConnect Premium Peers          : 2              
 AnyConnect Essentials             : Disabled       
@@ -45,12 +42,9 @@ Total TLS Proxy Sessions          : 2
 Botnet Traffic Filter             : Enabled        
 Cluster                           : Disabled       
 
-Serial Number: 9AB9BV0WETF
+Serial Number: 9ADFVKDKV8Q
 
 Image type          : Release
 Key version         : A
 
-Configuration last modified by enable_15 at 10:56:05.099 UTC Sun Jun 3 2018
-!!!
-!!!   END OUTPUT FROM: show version
-!!!
+Configuration last modified by enable_15 at 14:10:10.409 UTC Tue Jun 29 2021

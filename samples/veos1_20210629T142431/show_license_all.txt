@@ -1,0 +1,5 @@
+Customer name:         
+System Serial number:  C00DD531095F9C2B46268776D213D37B
+System MAC address:    129c.a790.fa10
+Domain name:           Unknown
+Platform:              vEOS-AWS

@@ -1,0 +1,13 @@
+# jun/29/2021 15:11:22 by RouterOS 6.44.3
+# software id = 
+#
+#
+#
+/interface ethernet
+set [ find default-name=ether1 ] disable-running-check=no
+/interface wireless security-profiles
+set [ find default=yes ] supplicant-identity=MikroTik
+/ip dhcp-client
+add dhcp-options=hostname,clientid disabled=no interface=ether1
+/system identity
+set name=ip-172-31-90-6.ec2.internal

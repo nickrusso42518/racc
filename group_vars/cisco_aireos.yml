@@ -3,12 +3,8 @@
 ansible_connection: "local"
 ansible_network_os: "aireos"
 command_list:
-  - file_suffix: "wln"
-    command: "show wlan summary"
-  - file_suffix: "inv"
-    command: "show inventory"
-  - file_suffix: "lic"
-    command: "show license all"
-  - file_suffix: "ver"
-    command: "show boot"
+  - "show wlan summary"
+  - "show inventory"
+  - "show license all"
+  - "show boot"
 ...

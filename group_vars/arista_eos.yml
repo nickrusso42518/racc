@@ -1,6 +1,6 @@
 ---
-# Tip: default XRv9000 username is 'root' on AWS
-ansible_network_os: "iosxr"
+# Tip: default vEOS username is 'ec2-user' on AWS
+ansible_network_os: "eos"
 command_list:
   - "show running-config"
   - "show inventory"

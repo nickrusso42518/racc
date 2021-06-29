@@ -1,0 +1,13 @@
+Arista vEOS
+Hardware version:    
+Serial number:       C00DD531095F9C2B46268776D213D37B
+System MAC address:  129c.a790.fa10
+
+Software image version: 4.22.1FX-VEOSRouter-cloud
+Architecture:           x86_64
+Internal build version: 4.22.1FX-VEOSRouter-cloud-13386208.4221FXVEOSRouter
+Internal build ID:      ae3e70d0-b023-43cb-a551-2d7bed0dd4c1
+
+Uptime:                 0 weeks, 0 days, 0 hours and 9 minutes
+Total memory:           7604320 kB
+Free memory:            6298664 kB

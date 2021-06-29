@@ -1,6 +1,3 @@
-!!!
-!!! BEGIN OUTPUT FROM: show running-config
-!!!
 Building configuration...
 !! IOS XR Configuration version = 6.3.1
 !! Last configuration change at Sun Jun  3 11:00:23 2018 by root
@@ -29,6 +26,3 @@ router static
 ssh server v2
 ssh server vrf default
 end
-!!!
-!!!   END OUTPUT FROM: show running-config
-!!!

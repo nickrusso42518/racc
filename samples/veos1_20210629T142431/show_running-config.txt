@@ -1,0 +1,34 @@
+! Command: show running-config
+! device: VEOS1 (vEOS, EOS-4.22.1FX-VEOSRouter-cloud)
+!
+! boot system flash:vEOS-Router.swi
+!
+agent KernelFib environment KERNELFIB_PROGRAM_ALL_ECMP='true'
+!
+switchport default mode routed
+!
+transceiver qsfp default-mode 4x10G
+!
+hostname VEOS1
+!
+spanning-tree mode mstp
+!
+aaa authentication policy on-success log
+aaa authentication policy on-failure log
+aaa authorization exec default local
+!
+no aaa root
+no username admin
+!
+username ansible privilege 15 secret sha512 $6$9kuFiSbdckQaghvz$nZKXXI4WPqNE0TkDpZ14sAtITvRslAivxwlrjo89wXKJdJTUTfel7CZ3ZgYRHX/gWYcGCGNGWblLJPCMkjkr5.
+username ec2-user nopassword
+username ec2-user ssh-key ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCZA3vgz6brzr19URQXNAetG7OL6CHFurEnlzgbS768XNPdw2FhCUaCY85pnwfhdvCRulzeoXTUEQ4uuOJy8pyvE7QC5TIghCT08N7BQynTcahHZJJdOJHWZsxBl+yhSSPAw+FYaEL8cXbz8puC39yMiHgt8x74uQvdlcoo9i5PdDynU6QEn6Noc19WmrT+zu2B9McWVKEwpRa8ar0O/mRUZ4/VbCerF9QkQbR4fFTYcpOFZLP1iFRgMAFIbBd3tsOtMVtk6SOTp3/it/39Em7dN+/mMLyb8TzLZsAUQYxg3L3UvQUfJn9HpHKy5F2ZI2PP6y+c0EvofEdBQnaJYRQb nickrus-kp
+!
+interface Ethernet1
+   no switchport
+   ip address dhcp
+   dhcp client accept default-route
+!
+ip routing
+!
+end

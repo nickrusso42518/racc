@@ -1,0 +1,346 @@
+Building configuration...
+
+Current configuration : 10447 bytes
+!
+! Last configuration change at 12:00:08 UTC Mon Jun 28 2021 by admin
+!
+version 17.3
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+service call-home
+platform qfp utilization monitor load 80
+platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname CSR1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+logging persistent size 1000000 filesize 8192 immediate
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-2174610277
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2174610277
+ revocation-check none
+ rsakeypair TP-self-signed-2174610277
+!
+crypto pki trustpoint SLA-TrustPoint
+ enrollment pkcs12
+ revocation-check crl
+!
+!
+crypto pki certificate chain TP-self-signed-2174610277
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 32313734 36313032 3737301E 170D3231 30323138 32303330 
+  35305A17 0D333130 32313832 30333035 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 31373436 
+  31303237 37308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 01008757 D34F2B94 A811E605 8DB25765 A9E7FA2C A98A34E0 E2811268 
+  05B330FD D2268BB4 C4E9554F 7FF0929E E3513E37 CF797C76 6ECD9DFE 0CB5099F 
+  902690C0 140A2A78 6C3972EA A661D33D 15894F48 B4778F78 08F8ED2B FB045DD6 
+  5B718923 0BAC4F13 8C48BFD4 5CE3BC90 613B6F73 8C1A3BBD A97EF469 F835AB2F 
+  1A12AD33 A27F6B08 55D9D0C6 B9ADBEA7 B507C96E 2A7E30D6 116ED969 A65E156E 
+  030A13F5 C238F4F9 779E4D26 DB5C0649 1B851F0D FD07788E 93257BC4 5D3E381C 
+  06D53667 2111C2BF EEC70C14 DA597AE9 C09BF728 AB677FBE D20984A3 80260EC4 
+  1CF1A5D4 1575D422 624EB835 207E3AE4 3F5AADD0 F8B8AD97 BEFE10D5 5F090ED3 
+  414BA3BD 8D570203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 142C35DC B69C5D75 F2D0FB5A AE9D15AD AFD6805D 
+  FA301D06 03551D0E 04160414 2C35DCB6 9C5D75F2 D0FB5AAE 9D15ADAF D6805DFA 
+  300D0609 2A864886 F70D0101 05050003 82010100 75963813 F0E6E3F0 7C4BDD8A 
+  5DEA90B7 095DE06B B4FAC7F3 3FA93A51 5888FD99 F722F77D 60C7C2AB F2B74035 
+  923109A3 5A6324A8 F8916001 8C8D9884 2C9B707A B8CEEC30 F6C79B70 BE89B842 
+  B17B0E81 9DA169E9 C8AB23AC D4180561 4CE60F6D BBF0C640 78E2B3D1 E5E2CB76 
+  92CC37DD 993D9EF1 E4489A11 9CF08C4D 9D24AF96 10C669C9 9326C7ED 9E22AC14 
+  ECE0B207 CD84CD44 127F2372 12A822C1 0667E145 7F6B60AC 5341AA9B 71E6EA4F 
+  E3A763C2 42734893 E7986F58 5A874F45 62D86B1D B1FA7BEB DF18690B 9F1A367C 
+  C6AE00BF 8B8977D3 CA44D458 D20DF02A 716D47F6 EE8428A8 3CF0FB9A EB3FABF0 
+  8447C4E0 6A20B333 F980E014 A018BD15 B813F19A
+  	quit
+crypto pki certificate chain SLA-TrustPoint
+ certificate ca 01
+  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
+  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363 
+  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934 
+  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305 
+  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720 
+  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 
+  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D 
+  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520 
+  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE 
+  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC 
+  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188 
+  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7 
+  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191 
+  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44 
+  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201 
+  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85 
+  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500 
+  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905 
+  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B 
+  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8 
+  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C 
+  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B 
+  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678 
+  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB 
+  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0 
+  D697DF7F 28
+  	quit
+!
+license udi pid CSR1000V sn 92ASWZPKBOY
+diagnostic bootup level minimal
+memory free low-watermark processor 71507
+!
+!
+spanning-tree extend system-id
+!
+username ec2-user privilege 15
+username admin privilege 15 password 7 15130F010D24
+!
+redundancy
+!
+!
+crypto ikev2 proposal IKEV2_PROPOSAL_UMBRELLA 
+ encryption aes-cbc-256
+ integrity sha256 sha512 sha384
+ group 20 19 14 21 5
+!
+crypto ikev2 policy IKEV2_POLICY_UMBRELLA 
+ proposal IKEV2_PROPOSAL_UMBRELLA
+!
+!
+crypto ikev2 profile IKEV2_PROFILE_UMBRELLA
+ description KEYS GENERATED AT: 2021-06-28 12:00:08.522016
+ match identity remote address 146.112.67.8 255.255.255.255 
+ match identity remote address 146.112.66.8 255.255.255.255 
+ match identity remote address 146.112.83.8 255.255.255.255 
+ match identity remote address 146.112.82.8 255.255.255.255 
+ match identity remote address 146.112.97.8 255.255.255.255 
+ match identity remote address 146.112.96.8 255.255.255.255 
+ match identity remote address 146.112.107.8 255.255.255.255 
+ match identity remote address 146.112.102.8 255.255.255.255 
+ match identity remote address 146.112.103.8 255.255.255.255 
+ match identity remote address 146.112.113.8 255.255.255.255 
+ match identity remote address 146.112.112.8 255.255.255.255 
+ match identity remote address 146.112.118.8 255.255.255.255 
+ match identity remote address 146.112.119.8 255.255.255.255 
+ match identity remote address 146.112.65.8 255.255.255.255 
+ match identity remote address 146.112.64.8 255.255.255.255 
+ match identity remote address 146.112.93.8 255.255.255.255 
+ match identity remote address 146.112.92.8 255.255.255.255 
+ match identity remote address 208.67.220.220 255.255.255.255 
+ match identity remote address 208.67.222.222 255.255.255.255 
+ identity local email R1.njrusmc.net@3911712-539009876-umbrella.com
+ authentication remote pre-share key o1Hs2VvRhh9vCzVx
+ authentication local pre-share key o1Hs2VvRhh9vCzVx
+ dpd 10 2 periodic
+!
+!
+!
+!
+! 
+crypto logging session
+crypto logging ikev2
+!
+!
+!
+!
+!
+!
+!
+!
+crypto ipsec transform-set IPSEC_XFORM_AES256_SHA1 esp-aes 256 esp-sha-hmac 
+ mode tunnel
+!
+crypto ipsec profile IPSEC_PROFILE_UMBRELLA
+ set transform-set IPSEC_XFORM_AES256_SHA1 
+ set ikev2-profile IKEV2_PROFILE_UMBRELLA
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback1
+ ip address 198.51.100.1 255.255.255.0
+!
+interface Loopback999
+ ip address 10.255.255.255 255.255.255.255
+!
+interface Tunnel1
+ ip address 192.168.0.2 255.255.255.0
+ tunnel source GigabitEthernet1
+ tunnel destination 172.31.34.212
+!
+interface Tunnel100
+ description UMBRELLA SIG TO: US-2: Ashburn, VA
+ ip unnumbered GigabitEthernet1
+ ip mtu 1440
+ ip tcp adjust-mss 1400
+ tunnel source GigabitEthernet1
+ tunnel mode ipsec ipv4
+ tunnel destination 146.112.82.8
+ tunnel protection ipsec profile IPSEC_PROFILE_UMBRELLA
+!
+interface VirtualPortGroup0
+ no ip address
+ ip nat inside
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1
+ ip address dhcp
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+!
+router eigrp CITYNET
+ !
+ address-family ipv4 unicast autonomous-system 1
+  !
+  topology base
+  exit-af-topology
+  network 192.168.0.0
+  network 198.51.100.0
+ exit-address-family
+!
+router ospf 1
+!
+iox
+ip forward-protocol nd
+ip tcp window-size 8192
+ip http server
+ip http authentication local
+ip http secure-server
+!
+ip route 0.0.0.0 0.0.0.0 Tunnel100 name UMBRELLA_SIG
+ip route 172.16.0.0 255.240.0.0 172.31.32.1
+ip route 100.16.0.0 255.255.0.0 dhcp
+ip route 146.112.67.8 255.255.255.255 dhcp
+ip route 146.112.66.8 255.255.255.255 dhcp
+ip route 146.112.83.8 255.255.255.255 dhcp
+ip route 146.112.82.8 255.255.255.255 dhcp
+ip route 146.112.97.8 255.255.255.255 dhcp
+ip route 146.112.96.8 255.255.255.255 dhcp
+ip route 146.112.107.8 255.255.255.255 dhcp
+ip route 146.112.102.8 255.255.255.255 dhcp
+ip route 146.112.103.8 255.255.255.255 dhcp
+ip route 146.112.113.8 255.255.255.255 dhcp
+ip route 146.112.112.8 255.255.255.255 dhcp
+ip route 146.112.118.8 255.255.255.255 dhcp
+ip route 146.112.119.8 255.255.255.255 dhcp
+ip route 146.112.65.8 255.255.255.255 dhcp
+ip route 146.112.64.8 255.255.255.255 dhcp
+ip route 146.112.93.8 255.255.255.255 dhcp
+ip route 146.112.92.8 255.255.255.255 dhcp
+ip route 208.67.220.220 255.255.255.255 dhcp
+ip route 208.67.222.222 255.255.255.255 dhcp
+ip ssh rsa keypair-name ssh-key
+ip ssh version 2
+ip ssh pubkey-chain
+  username ec2-user
+   key-hash ssh-rsa 2B1E195AC732D9FBC7D70B9871DA7CB7 ec2-user
+ip ssh server algorithm publickey ecdsa-sha2-nistp256 ecdsa-sha2-nistp384 ecdsa-sha2-nistp521 ssh-rsa x509v3-ecdsa-sha2-nistp256 x509v3-ecdsa-sha2-nistp384 x509v3-ecdsa-sha2-nistp521
+ip scp server enable
+!
+ip access-list standard GS_NAT_ACL
+ 10 permit 192.168.35.0 0.0.0.255
+ip access-list standard VTY
+ 10 permit 100.16.0.0 0.0.255.255
+ 20 permit 172.16.0.0 0.15.255.255
+!
+!
+ip sla responder
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line vty 0 4
+ access-class VTY in
+ exec-timeout 0 0
+ login local
+ transport input ssh
+line vty 5 20
+ login local
+ transport input ssh
+!
+call-home
+ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com
+ ! the email address configured in Cisco Smart License Portal will be used as contact email address to send SCH notifications.
+ contact-email-addr sch-smart-licensing@cisco.com
+ profile "CiscoTAC-1"
+  active
+  destination transport-method http
+!
+!
+!
+!
+!
+app-hosting appid guestshell
+ app-vnic gateway1 virtualportgroup 0 guest-interface 0
+  guest-ipaddress 192.168.35.102 netmask 255.255.255.0
+ app-default-gateway 192.168.35.101 guest-interface 0
+ name-server0 8.8.8.8
+netconf-yang feature candidate-datastore
+end

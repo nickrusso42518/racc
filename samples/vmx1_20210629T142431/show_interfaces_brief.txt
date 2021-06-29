@@ -1,0 +1,163 @@
+Physical interface: cbp0, Enabled, Physical link is Up
+  Type: Ethernet, Link-level type: Ethernet, MTU: 9192, Clocking: Unspecified, Speed: Unspecified
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+Physical interface: demux0, Enabled, Physical link is Up
+  Type: Software-Pseudo, Link-level type: Unspecified, MTU: 9192, Clocking: 1, Speed: Unspecified
+  Device flags   : Present Running
+  Interface flags: Point-To-Point SNMP-Traps
+
+Physical interface: dsc, Enabled, Physical link is Up
+  Type: Software-Pseudo, Link-level type: Unspecified, MTU: Unlimited, Clocking: Unspecified, Speed: Unspecified
+  Device flags   : Present Running
+  Interface flags: Point-To-Point SNMP-Traps
+
+Physical interface: em1, Enabled, Physical link is Up
+  Type: Ethernet, Link-level type: Ethernet, MTU: 1514, Clocking: Unspecified, Speed: 1000mbps
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+  Logical interface em1.0 
+    Flags: Up SNMP-Traps 0x4004000 Encapsulation: ENET2
+    inet  10.0.0.4/8      
+          128.0.0.1/2     
+          128.0.0.4/2     
+    inet6 fe80::5254:ff:fe12:bdfe/64
+          fec0::a:0:0:4/64
+    tnp   0x4             
+
+Physical interface: esi, Enabled, Physical link is Up
+  Type: Software-Pseudo, Link-level type: VxLAN-Tunnel-Endpoint, MTU: Unlimited, Clocking: Unspecified, Speed: Unlimited
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+Physical interface: fti0, Enabled, Physical link is Up
+  Type: FTI, Link-level type: Flexible-tunnel-Interface, MTU: Unlimited, Clocking: Unspecified, Speed: Unlimited
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+Physical interface: fti1, Enabled, Physical link is Up
+  Type: FTI, Link-level type: Flexible-tunnel-Interface, MTU: Unlimited, Clocking: Unspecified, Speed: Unlimited
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+Physical interface: fti2, Enabled, Physical link is Up
+  Type: FTI, Link-level type: Flexible-tunnel-Interface, MTU: Unlimited, Clocking: Unspecified, Speed: Unlimited
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+Physical interface: fti3, Enabled, Physical link is Up
+  Type: FTI, Link-level type: Flexible-tunnel-Interface, MTU: Unlimited, Clocking: Unspecified, Speed: Unlimited
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+Physical interface: fti4, Enabled, Physical link is Up
+  Type: FTI, Link-level type: Flexible-tunnel-Interface, MTU: Unlimited, Clocking: Unspecified, Speed: Unlimited
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+Physical interface: fti5, Enabled, Physical link is Up
+  Type: FTI, Link-level type: Flexible-tunnel-Interface, MTU: Unlimited, Clocking: Unspecified, Speed: Unlimited
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+Physical interface: fti6, Enabled, Physical link is Up
+  Type: FTI, Link-level type: Flexible-tunnel-Interface, MTU: Unlimited, Clocking: Unspecified, Speed: Unlimited
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+Physical interface: fti7, Enabled, Physical link is Up
+  Type: FTI, Link-level type: Flexible-tunnel-Interface, MTU: Unlimited, Clocking: Unspecified, Speed: Unlimited
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+Physical interface: fxp0, Enabled, Physical link is Up
+  Type: Ethernet, Link-level type: Ethernet, MTU: 1514, Clocking: Unspecified, Speed: 1000mbps
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+  Logical interface fxp0.0 
+    Flags: Up SNMP-Traps 0x4004000 Encapsulation: ENET2
+    inet  172.31.39.171/20
+
+Physical interface: gre, Enabled, Physical link is Up
+  Type: GRE, Link-level type: GRE, MTU: Unlimited, Speed: Unlimited
+  Device flags   : Present Running
+  Interface flags: Point-To-Point SNMP-Traps
+
+Physical interface: ipip, Enabled, Physical link is Up
+  Type: IPIP, Link-level type: IP-over-IP, MTU: Unlimited, Speed: Unlimited
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+Physical interface: irb, Enabled, Physical link is Up
+  Type: Ethernet, Link-level type: Ethernet, MTU: 1514, Clocking: Unspecified, Speed: Unspecified
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+Physical interface: jsrv, Enabled, Physical link is Up
+  Type: Ethernet, Link-level type: Ethernet, MTU: 1514, Clocking: Unspecified, Speed: Unspecified
+  Device flags   : Present Running
+
+  Logical interface jsrv.1 
+    Flags: Up 0x24004000 Encapsulation: unknown
+    inet  128.0.0.127/2   
+
+Physical interface: lo0, Enabled, Physical link is Up
+  Type: Loopback, Link-level type: Unspecified, MTU: Unlimited, Clocking: Unspecified, Speed: Unspecified
+  Device flags   : Present Running Loopback
+  Interface flags: SNMP-Traps
+
+  Logical interface lo0.16384 
+    Flags: SNMP-Traps Encapsulation: Unspecified
+    inet  127.0.0.1        --> 0/0
+
+  Logical interface lo0.16385 
+    Flags: SNMP-Traps Encapsulation: Unspecified
+    inet
+
+Physical interface: lsi, Enabled, Physical link is Up
+  Type: Software-Pseudo, Link-level type: LSI, MTU: Unlimited, Clocking: Unspecified, Speed: Unlimited
+  Device flags   : Present Running
+
+Physical interface: mif, Enabled, Physical link is Up
+  Type: Software-Pseudo, Link-level type: Interface-Specific, MTU: 1440, Clocking: Unspecified, Speed: Unspecified
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+Physical interface: mtun, Enabled, Physical link is Up
+  Type: Multicast-GRE, Link-level type: GRE, MTU: Unlimited, Speed: Unlimited
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+Physical interface: pimd, Enabled, Physical link is Up
+  Type: PIMD, Link-level type: PIM-Decapsulator, MTU: Unlimited, Speed: Unlimited
+  Device flags   : Present Running
+
+Physical interface: pime, Enabled, Physical link is Up
+  Type: PIME, Link-level type: PIM-Encapsulator, MTU: Unlimited, Speed: Unlimited
+  Device flags   : Present Running
+
+Physical interface: pip0, Enabled, Physical link is Up
+  Type: Ethernet, Link-level type: Ethernet, MTU: 9192, Clocking: Unspecified, Speed: Unspecified
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+Physical interface: pp0, Enabled, Physical link is Up
+  Type: PPPoE, Link-level type: PPPoE, MTU: 1532, Speed: Unspecified
+  Device flags   : Present Running
+  Interface flags: Point-To-Point SNMP-Traps
+
+Physical interface: rbeb, Enabled, Physical link is Up
+  Type: Software-Pseudo, Link-level type: Remote-BEB, MTU: Unlimited, Clocking: Unspecified, Speed: Unlimited
+  Device flags   : Present Running
+
+Physical interface: tap, Enabled, Physical link is Up
+  Type: Software-Pseudo, Link-level type: Interface-Specific, MTU: Unlimited, Clocking: Unspecified, Speed: Unlimited
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps
+
+Physical interface: vtep, Enabled, Physical link is Up
+  Type: Software-Pseudo, Link-level type: VxLAN-Tunnel-Endpoint, MTU: Unlimited, Clocking: Unspecified, Speed: Unlimited
+  Device flags   : Present Running

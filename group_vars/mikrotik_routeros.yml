@@ -1,0 +1,8 @@
+---
+# Tip: default CHR username is 'admin' on AWS
+ansible_network_os: "routeros"
+command_list:
+  - "/system resource print"
+  - "/system license print"
+  - "export"  # displays configuration
+...

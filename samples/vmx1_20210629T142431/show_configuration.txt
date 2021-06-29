@@ -1,0 +1,69 @@
+## Last commit: 2021-06-29 14:21:18 UTC by jnpr
+version 20191212.201431_builder.r1074901;
+groups {
+    global {
+        system {
+            host-name ip-172-31-39-171;
+            login {
+                user jnpr {
+                    uid 2000;
+                    class super-user;
+                    authentication {
+                        ssh-rsa "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCZA3vgz6brzr19URQXNAetG7OL6CHFurEnlzgbS768XNPdw2FhCUaCY85pnwfhdvCRulzeoXTUEQ4uuOJy8pyvE7QC5TIghCT08N7BQynTcahHZJJdOJHWZsxBl+yhSSPAw+FYaEL8cXbz8puC39yMiHgt8x74uQvdlcoo9i5PdDynU6QEn6Noc19WmrT+zu2B9McWVKEwpRa8ar0O/mRUZ4/VbCerF9QkQbR4fFTYcpOFZLP1iFRgMAFIbBd3tsOtMVtk6SOTp3/it/39Em7dN+/mMLyb8TzLZsAUQYxg3L3UvQUfJn9HpHKy5F2ZI2PP6y+c0EvofEdBQnaJYRQb nickrus-kp"; ## SECRET-DATA
+                    }
+                }
+            }
+            services {
+                ssh {
+                    root-login deny-password;
+                }
+            }
+            syslog {
+                user * {
+                    any emergency;
+                }
+                file messages {
+                    any notice;
+                    authorization info;
+                }
+                file interactive-commands {
+                    interactive-commands any;
+                }
+            }
+        }
+        interfaces {
+            fxp0 {
+                unit 0 {
+                    family inet {
+                        address 172.31.39.171/20;
+                    }
+                }
+            }
+        }
+        routing-options {
+            static {
+                route 0.0.0.0/0 {
+                    next-hop 172.31.32.1;
+                    retain;
+                    no-readvertise;
+                }
+            }
+        }
+    }
+}
+apply-groups global;
+system {
+    host-name VMX1;
+    root-authentication {
+        encrypted-password "$6$rb4s/WBz$mv4/yVA4hyPM/Xbpofe8vWa10x3hPuH7XpKgL5cpdEFgk.SjZ26T8YxqtYICGvAM05yBfZubkEJsNZvCP16lO/"; ## SECRET-DATA
+    }
+    login {
+        user ansible {
+            uid 2001;
+            class super-user;
+            authentication {
+                encrypted-password "$6$qG9/Weu1$8xQGrKgQfdLFdH41SwaU8KL4O3/wfw.eLie5vQ.EzKbo3IaBy4decLBUx.TkMs4GzpN2WPLvsjHI/a7p6ZOH30"; ## SECRET-DATA
+            }
+        }
+    }
+}

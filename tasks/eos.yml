@@ -1,8 +1,7 @@
 ---
 # Log in and run the commands specified in the group_vars/ files.
-- name: "AIREOS >> Gather Cisco AireOS information"
-  community.network.aireos_command:
-    provider: "{{ legacy_creds }}"
+- name: "EOS >> Gather Arista EOS information"
+  arista.eos.eos_command:
     commands: "{{ command_list }}"
   register: "CLI_OUTPUT"
 ...

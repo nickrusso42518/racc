@@ -1,0 +1,16 @@
+uptime: 26m28s
+                  version: 6.44.3 (stable)
+               build-time: Apr/23/2019 12:37:03
+              free-memory: 946.7MiB
+             total-memory: 992.0MiB
+                      cpu: Intel(R)
+                cpu-count: 1
+            cpu-frequency: 2394MHz
+                 cpu-load: 0%
+           free-hdd-space: 988.0MiB
+          total-hdd-space: 1020.1MiB
+  write-sect-since-reboot: 12648
+         write-sect-total: 12649
+        architecture-name: x86_64
+               board-name: CHR
+                 platform: MikroTik

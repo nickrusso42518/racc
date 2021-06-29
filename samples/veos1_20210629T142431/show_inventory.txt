@@ -1,0 +1,13 @@
+System information
+  Model                    Description                                          
+  ------------------------ ---------------------------------------------------- 
+  vEOS                     EOS in a virtual machine                             
+
+  HW Version  Serial Number                    Mfg Date   Epoch 
+  ----------- -------------------------------- ---------- ----- 
+              C00DD531095F9C2B46268776D213D37B                  
+
+System has 1 port
+  Type               Count
+  ------------------ ----
+  SwitchedBootstrap  1

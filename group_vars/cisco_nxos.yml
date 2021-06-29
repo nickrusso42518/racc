@@ -1,12 +1,8 @@
 ---
 ansible_network_os: "nxos"
 command_list:
-  - file_suffix: "inv"
-    command: "show inventory"
-  - file_suffix: "lic"
-    command: "show license"
-  - file_suffix: "ver"
-    command: "show version"
-  - file_suffix: "nos"
-    command: "show install active"
+  - "show inventory"
+  - "show license usage"
+  - "show version"
+  - "show install active"
 ...
