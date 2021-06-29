@@ -1,6 +1,6 @@
 [![Build Status](
-https://travis-ci.org/nickrusso42518/racc.svg?branch=master)](
-https://travis-ci.org/nickrusso42518/racc)
+https://travis-ci.com/nickrusso42518/racc.svg?branch=master)](
+https://travis-ci.com/nickrusso42518/racc)
 
 [![published](
 http://cs.co/codeex-badge)](
@@ -69,7 +69,7 @@ README assumes you have Python and `pip` installed:
   2. Install Ansible collections: `ansible-galaxy collection install -r requirements.yml`
   3. Edit `hosts.yml`, the inventory file to suit your network
   4. Edit the relevant `group_vars/` files based on your devices
-  5. Run the playbook: `ansible-playbook racc_playbook.yml
+  5. Run the playbook: `ansible-playbook racc_playbook.yml`
 
 ## Variables
 The `group_vars/all.yml` file contains connectivity parameters common to all
@@ -196,7 +196,7 @@ the filename at the start of each output, making it easy to determine
 where one output ends and another begins.
 
 ```
-$ head -n-0 samples/csr1_20210629T142431/* | less
+$ head -n-0 samples/csr1_20210629T142431/*
 ==> samples/csr1_20210629T142431/show_inventory.txt <==
 NAME: "Chassis", DESCR: "Cisco CSR1000V Chassis"
 PID: CSR1000V          , VID: V00  , SN: 92ASWZPKBOY

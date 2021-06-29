@@ -11,9 +11,9 @@ install:
 # Execute linting tests before running the main playbook.
 # If any of these tasks fail, the entire build fails immediately.
 before_script:
+  - "echo 'brkrst3310' >> ~/vault_pass_file.txt"
   - "find . -name '*.yml' | xargs yamllint -s"
   - "find . -name '*playbook.yml' | xargs ansible-lint -v"
-  - "echo 'brkrst3310' >> ~/vault_pass_file.txt"
 
 # Run the role playbook with mock inputs to validate the role functionality.
 script:
