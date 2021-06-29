@@ -3,7 +3,7 @@
   block:
     # Begin by checking to ensure every device has defined necessary vars
     - name: "SYS >> Perform basic error checking on core variables"
-      assert:
+      ansible.builtin.assert:
         that:
           - "ansible_network_os is defined and ansible_network_os"
           - "ansible_connection in ['network_cli', 'local']"
@@ -12,26 +12,26 @@
           - "scp.user is defined and scp.user"
           - "scp.host is defined and scp.host"
           - "archive_format is defined and archive_format"
-          - "remove_files == true or remove_files == false"
+          - "newline_sequence is defined and newline_sequence"
         msg: "Basic variables defined incorrectly, please see README"
 
     # Capture the date/time group for timestamping the data written
     # to files later in the playbook. Also, create the files/ and
     # archives/ directories which is especially important for first-time
-    # runs in CI systems.
+    # runs in CI systems. Example: "20210629T083125"
     - name: "BLOCK >> Capture date/time and create core directories only once"
       block:
         - name: "LOG >> Get ansible date/time facts"
-          setup:
+          ansible.builtin.setup:
             filter: "ansible_date_time"
             gather_subset: "!all"
 
         - name: "LOG >> Store DTG as fact"
-          set_fact:
+          ansible.builtin.set_fact:
             DTG: "{{ ansible_date_time.iso8601_basic_short }}"
 
         - name: "SYS >> Create files/ and archives/ directories"
-          file:
+          ansible.builtin.file:
             path: "{{ item }}"
             state: "directory"
           loop:
@@ -39,24 +39,18 @@
             - "files"
       run_once: true
 
-    # Identify the file string for file names to simplify references
-    # later in the process.
-    - name: "SYS >> Store <hostname_DTG> string per network device"
-      set_fact:
-        FILE_STRING: "{{ inventory_hostname }}_{{ DTG }}"
-
     # Identify the output directory string for file names to simplify
-    # references later in the process.
+    # references later in the process. Example: "files/csr1_20210629T083125"
     - name: "SYS >> Store output directory"
-      set_fact:
-        OUTPUT_DIR: "files/{{ FILE_STRING }}/"
+      ansible.builtin.set_fact:
+        OUTPUT_DIR: "files/{{ inventory_hostname }}_{{ DTG }}"
 
     # Each host gets a directory to house the files relevant to that
     # host. For example, if we collect the config, version, and
     # inventory from a router, there would be 3 files in a folder
     # representing that host.
     - name: "SYS >> Create directory per network device"
-      file:
+      ansible.builtin.file:
         path: "{{ OUTPUT_DIR }}"
         state: "directory"
 

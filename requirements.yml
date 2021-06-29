@@ -1,0 +1,10 @@
+---
+collections:
+  - "cisco.ios"
+  - "cisco.iosxr"
+  - "cisco.asa"
+  - "cisco.nxos"
+  - "junipernetworks.junos"
+  - "community.network"  # Cisco AireOS, Nokia SR-OS, Mikrotik Router-OS
+  - "community.general"  # archive module
+...

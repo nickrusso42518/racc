@@ -3,14 +3,16 @@ language: "python"
 python:
   - "3.7"
 
-# Install python packages for ansible and linters.
+# Install python packages for Ansible and associated collections.
 install:
   - "pip install -r requirements.txt"
+  - "ansible-galaxy collection install -r requirements.yml"
 
 # Execute linting tests before running the main playbook.
 # If any of these tasks fail, the entire build fails immediately.
 before_script:
   - "find . -name '*.yml' | xargs yamllint -s"
+  - "find . -name '*playbook.yml' | xargs ansible-lint -v"
   - "echo 'brkrst3310' >> ~/vault_pass_file.txt"
 
 # Run the role playbook with mock inputs to validate the role functionality.

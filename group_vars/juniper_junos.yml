@@ -1,0 +1,11 @@
+---
+# Tip: default vMX username is 'jnpr' on AWS
+ansible_user: "ansible"
+ansible_password: "ansible123"
+ansible_network_os: "junos"
+command_list:
+  - "show configuration"
+  - "show inventory"
+  - "show system license"
+  - "show version"
+...

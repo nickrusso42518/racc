@@ -1,0 +1,9 @@
+---
+# Tip: default CSR1000v username is 'ec2-user' on AWS
+ansible_network_os: "ios"
+command_list:
+  - "show running-config"
+  - "show inventory"
+  - "show license all"
+  - "show version"
+...
