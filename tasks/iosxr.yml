@@ -1,7 +1,7 @@
 ---
 # Log in and run the commands specified in the group_vars/ files.
 - name: "IOSXR >> Gather Cisco IOS-XR information"
-  iosxr_command:
+  cisco.iosxr.iosxr_command:
     commands: "{{ item.command }}"
   register: "CLI_OUTPUT"
   loop: "{{ command_list }}"

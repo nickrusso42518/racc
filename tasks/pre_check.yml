@@ -3,7 +3,7 @@
   block:
     # Begin by checking to ensure every device has defined necessary vars
     - name: "SYS >> Perform basic error checking on core variables"
-      assert:
+      ansible.builtin.assert:
         that:
           - "ansible_network_os is defined and ansible_network_os"
           - "ansible_connection in ['network_cli', 'local']"
@@ -22,16 +22,16 @@
     - name: "BLOCK >> Capture date/time and create core directories only once"
       block:
         - name: "LOG >> Get ansible date/time facts"
-          setup:
+          ansible.builtin.setup:
             filter: "ansible_date_time"
             gather_subset: "!all"
 
         - name: "LOG >> Store DTG as fact"
-          set_fact:
+          ansible.builtin.set_fact:
             DTG: "{{ ansible_date_time.iso8601_basic_short }}"
 
         - name: "SYS >> Create files/ and archives/ directories"
-          file:
+          ansible.builtin.file:
             path: "{{ item }}"
             state: "directory"
           loop:
@@ -42,13 +42,13 @@
     # Identify the file string for file names to simplify references
     # later in the process.
     - name: "SYS >> Store <hostname_DTG> string per network device"
-      set_fact:
+      ansible.builtin.set_fact:
         FILE_STRING: "{{ inventory_hostname }}_{{ DTG }}"
 
     # Identify the output directory string for file names to simplify
     # references later in the process.
     - name: "SYS >> Store output directory"
-      set_fact:
+      ansible.builtin.set_fact:
         OUTPUT_DIR: "files/{{ FILE_STRING }}/"
 
     # Each host gets a directory to house the files relevant to that
@@ -56,7 +56,7 @@
     # inventory from a router, there would be 3 files in a folder
     # representing that host.
     - name: "SYS >> Create directory per network device"
-      file:
+      ansible.builtin.file:
         path: "{{ OUTPUT_DIR }}"
         state: "directory"
 

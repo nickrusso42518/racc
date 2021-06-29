@@ -6,13 +6,13 @@
   tasks:
     # Perform data validation and timestamp/directory setup
     - name: "INCLUDE >> Error checking and log setup"
-      include_tasks: "tasks/pre_check.yml"
+      ansible.builtin.include_tasks: "tasks/pre_check.yml"
 
     # Include the proper task list based on the device type.
     # All tasks will register outputs to 'CLI_OUTPUT' which
     # must have a 'stdout_lines' 2D array of strings.
     - name: "SYS >> Include tasks for various network device types"
-      include_tasks: "tasks/{{ ansible_network_os }}.yml"
+      ansible.builtin.include_tasks: "tasks/{{ ansible_network_os }}.yml"
       when: "not ci_test"
 
     # Include the CI testing task which builds mock data in the
@@ -20,7 +20,7 @@
     # that the CLI_OUTPUT.results and command_list sequences
     # are always the same length and remain in sync.
     - name: "SYS >> Include tasks to generate mock output for CI"
-      include_tasks: "tasks/ci_test.yml"
+      ansible.builtin.include_tasks: "tasks/ci_test.yml"
       when: "ci_test"
 
     # All task files should have defined the CLI_OUTPUT variable which
@@ -29,7 +29,7 @@
     # ensuring it exists, is a list, and has the proper length for
     # future iteration.
     - name: "SYS >> Sanity check; ensure CLI_OUTPUT is valid"
-      assert:
+      ansible.builtin.assert:
         that:
           - "CLI_OUTPUT is defined and CLI_OUTPUT"
           - "CLI_OUTPUT.results is defined"
@@ -40,7 +40,7 @@
     # With the directory created, use the 'commands' template to write the
     # command output to disk within the specified folder.
     - name: "SYS >> Write network CLI output to disk"
-      template:
+      ansible.builtin.template:
         src: "templates/commands.j2"
         dest: "{{ OUTPUT_DIR }}{{ FILE_STRING }}_{{ item.0.file_suffix }}.txt"
       loop: "{{ command_list | zip(CLI_OUTPUT.results) | list }}"
@@ -53,13 +53,13 @@
         # Store the string file path of the future archive to simplify
         # variable references later in the process.
         - name: "SYS >> Store archive path/filename"
-          set_fact:
+          ansible.builtin.set_fact:
             ARCH_FQDN: "archives/commands_{{ DTG }}.{{ archive_format }}"
 
         # Zip up all of the individual text files into an archive and
         # optionally remove the source files if 'remove_files' is true.
         - name: "SYS >> Archive files into a {{ archive_format }}"
-          archive:
+          ansible.builtin.archive:
             dest: "{{ ARCH_FQDN }}"
             path: "files/*{{ DTG }}"
             format: "{{ archive_format }}"
@@ -68,7 +68,7 @@
         # Users can optionally copy the ZIP bundle to an SCP server by copying
         # the SCP command written to stdout for simplicity.
         - name: "SYS >> Copy the command below to SCP the archive off-box"
-          debug:
+          ansible.builtin.debug:
             msg: "scp {{ ARCH_FQDN }} {{ scp.user }}@{{ scp.host }}:/racc/"
       run_once: true
       delegate_to: "localhost"
@@ -76,7 +76,7 @@
     # Final cleanup; delete empty directories from files/ when Boolean
     # remove_files is true. The archive module does not do this automatically.
     - name: "SYS >> Remove network device directory? {{ remove_files }}"
-      file:
+      ansible.builtin.file:
         path: "{{ OUTPUT_DIR }}"
         state: "absent"
       when: "remove_files"

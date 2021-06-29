@@ -1,7 +1,7 @@
 ---
 # Log in and run the commands specified in the group_vars/ files.
 - name: "ASA >> Gather Cisco ASA information"
-  asa_command:
+  cisco.asa.asa_command:
     commands: "{{ item.command }}"
   register: "CLI_OUTPUT"
   loop: "{{ command_list }}"
