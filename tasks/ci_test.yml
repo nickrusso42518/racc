@@ -1,16 +1,16 @@
 ---
 - name: "SYS >> Initialize the results list to simplify the next step"
-  ansible.builtin.set_fact:
+  set_fact:
     CLI_OUTPUT:
       results: []
 
 - name: "SYS >> Create mock output for each command with the proper structure"
-  ansible.builtin.set_fact:
+  set_fact:
     CLI_OUTPUT:
       results: "{{ CLI_OUTPUT.results }} + [{'stdout_lines': [['1', '2']]}]"
   loop: "{{ command_list }}"
 
 - name: "DEBUG >> Print CLI_OUTPUT for verification"
-  ansible.builtin.debug:
+  debug:
     var: "CLI_OUTPUT"
 ...
