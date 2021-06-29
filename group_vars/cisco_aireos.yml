@@ -1,7 +1,13 @@
 ---
-# As of v2.6.2, aireos_command does not support network_cli
-ansible_connection: "local"
+# aireos_command does not support network_cli
 ansible_network_os: "aireos"
+ansible_connection: "local"
+provider:
+  host: "broken-dawn-7748.edge.mysocket.io"
+  username: "{{ ansible_user }}"
+  password: "{{ ansible_password }}"
+  port: 58390
+
 command_list:
   - "show wlan summary"
   - "show inventory"

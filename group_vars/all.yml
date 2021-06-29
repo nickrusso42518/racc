@@ -4,21 +4,16 @@
 # not can use the legacy provider credentials below with 'local' connection.
 ansible_python_interpreter: "/usr/bin/env python"
 ansible_connection: "network_cli"
-ansible_user: "ansible"
-ansible_password: !vault |
+ansible_user: "admin"
+# broken-dawn-7748.edge.mysocket.io
+ansible_password: "n0kia$123"
+ansible_password2: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           61643030323961626532333431333639303538313233656264343066383764396664626135633636
           6464333366383938333063336636363234356535643839300a386430363562646232333732356436
           31626464656530626335626332316362643337356533393139643261653563646462363935333639
           3363663235623335370a383565653466623263623334373161623734303533383534373865643966
           6566
-
-# This is the classic "provider" dictionary which should only be used when
-# 'network_cli' is not available, and 'local' connection must be used.
-legacy_creds:
-  host: "{{ inventory_hostname }}"
-  username: "{{ ansible_user }}"
-  password: "{{ ansible_password }}"
 
 # These additional options seldom change once initially configured.
 ci_test: false

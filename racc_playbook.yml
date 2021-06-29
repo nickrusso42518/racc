@@ -2,7 +2,7 @@
 # This play performs the work to collect data from network devices in the
 # network and store it in individual files.
 - name: "Get information from network devices"
-  hosts: "all"
+  hosts: "nokia_sros"
   tasks:
     # Perform data validation and timestamp/directory setup
     - name: "INCLUDE >> Error checking and log setup"
