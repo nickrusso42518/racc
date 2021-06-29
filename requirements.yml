@@ -1,0 +1,8 @@
+---
+collections:
+  - name: cisco.asa
+  - name: cisco.ios
+  - name: cisco.iosxr
+  - name: cisco.nxos
+  - name: community.network
+...
