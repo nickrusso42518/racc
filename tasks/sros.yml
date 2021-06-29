@@ -1,7 +1,0 @@
----
-# Log in and run the commands specified in the group_vars/ files.
-- name: "SROS >> Gather Nokia SROS information"
-  community.network.sros_command:
-    commands: "{{ command_list }}"
-  register: "CLI_OUTPUT"
-...

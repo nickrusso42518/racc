@@ -16,27 +16,30 @@ for configuration backups, hardware inventory, and license information.
 > Email:    njrusmc@gmail.com\
 > Twitter:  @nickrusso42518
 
-  * [Supported platforms](#supported-platforms)
+  * [Supported Platforms](#supported-platforms)
+  * [Getting Started](#supported-platforms)
   * [Variables](#variables)
-  * [Task summary](#task-summary)
-  * [Output files](#output-files)
+  * [Task Summary](#task-summary)
+  * [Output Files](#output-files)
 
-## Supported platforms
-Any host with an Ansible `*_command` module can be supported, including
-non-Cisco devices. The playbook currently provides Ansible task files for
-Cisco IOS/IOS-XE, Cisco IOS-XR, Cisco ASA, Cisco NX-OS, and Cisco AireOS
-device types. To add a new device type, create a new task file in the
+## Supported Platforms
+Any network device with a corresponding Ansible `*_command` module can be
+supported. The playbook currently provides Ansible task files for
+the various network operation systems shown in the list below.
+To add a new device type, create a new task file in the
 `tasks/` folder along with a corresponding `group_vars/` and inventory entry.
 These are all easy tasks given the abstract architecture of this playbook.
 
 Testing was conducted on the following platforms and versions:
-  * Cisco CSR1000v, version 16.08.01a, running in AWS
-  * Cisco CSR1000v, version 16.09.02, running in AWS
   * Cisco CSR1000v, version 16.12.01a, running in AWS
   * Cisco XRv9000, version 6.3.1, running in AWS
   * Cisco ASAv, version 9.9.1, running in AWS
   * Cisco Nexus 3172T, version 6.0.2.U6.4a, hardware appliance
-  * Cisco vWLC, version 8.3.143.0, running on VMware ESXi
+  * Cisco Nexus 9000v, version 9.3(3), running on VMware ESXi
+  * Cisco AireOS vWLC, version 8.3.143.0, running on VMware ESXi
+  * Juniper vMX, version 18.4R1, running in AWS
+  * Arista vEOS, version 4.22.1FX, running in AWS
+  * Mikrotik RouterOS, version 6.44.3, running in AWS
 
 ```
 $ cat /etc/redhat-release
@@ -47,24 +50,33 @@ Linux ip-10-125-0-100.ec2.internal 3.10.0-693.el7.x86_64 #1 SMP
   Thu Jul 6 19:56:57 EDT 2017 x86_64 x86_64 x86_64 GNU/Linux
 
 $ ansible --version
-ansible 2.8.7
-  config file = /home/ec2-user/racc/ansible.cfg
-  configured module search path = ['/home/ec2-user/.ansible/plugins/modules',
+ansible 2.10.11
+  config file = /home/centos/code/racc/ansible.cfg
+  configured module search path = ['/home/centos/.ansible/plugins/modules',
     '/usr/share/ansible/plugins/modules']
   ansible python module location =
-    /home/ec2-user/environments/racc287/lib/python3.7/site-packages/ansible
-  executable location = /home/ec2-user/environments/racc287/bin/ansible
-  python version = 3.7.3 (default, Aug 27 2019, 16:56:53)
+    /home/centos/environments/ans3/lib/python3.7/site-packages/ansible
+  executable location = /home/centos/environments/ans3/bin/ansible
+  python version = 3.7.3 (default, Apr 28 2019, 11:01:35)
     [GCC 4.8.5 20150623 (Red Hat 4.8.5-36)]
+
 ```
+
+## Getting Started
+Follow these instructions to quickly get started with `racc`. This
+README assumes you have Python and `pip` installed:
+  1. Install Python packages: `pip install requirements.txt`
+  2. Install Ansible collections: `ansible-galaxy collection install -r requirements.yml`
+  3. Edit `hosts.yml`, the inventory file to suit your network
+  4. Edit the relevant `group_vars/` files based on your devices
+  5. Run the playbook: `ansible-playbook racc_playbook.yml
 
 ## Variables
 The `group_vars/all.yml` file contains connectivity parameters common to all
-network modules. These typically use `network_cli` but for modules not yet
-updated (or for users running older versions of Ansible), a legacy provider
-structure is included as well. Note that if the legacy method is used, the
+network modules. These typically use `network_cli`. Note that if the legacy method
+`provider` method is used for some devices, it must first be defined. Then,
 individual task files for each platform must set `ansible_connection: local`
-in addition to manually specifying `provider: "{{ legacy_creds }}"` as a task
+in addition to manually specifying `provider: "{{ provider }}"` as a task
 suboption in most cases.
 
 There are some minor variables that control the playbooks output products
@@ -75,6 +87,8 @@ and formatting. These are not often modified:
     retaining all the uncompressed text files on the control machine is not
     a long-term solution. Setting this to `false` is useful for quick tests
     or troubleshooting.
+  * `newline_sequence`: Determines what kind of line terminator to use for
+    output files. See the Ansible documentation for a full list of options.
   * `archive_format`: Determines what kind of archive to create when the
     `archive` moduel is called. Any option supported by the version of Ansible
     in use can be used here. Some examples include zip, gz, bz2, xz, and tar
@@ -89,10 +103,10 @@ and formatting. These are not often modified:
 
 There are independent `group_vars/` files for each network device type:
 routers, switches, and firewalls, and wireless LAN controllers for example.
-Each one has a key of `command_list` which specifies a list of dictionaries
-as shown below. The `file_suffix` value specifies what is written to the
-end of the file name, and the `command` value is the literal command to
-be issued to the device. CLI output redirection (pipes) are supported.
+Each one has a key of `command_list` which specifies a list of commands
+specific to that product's CLI. After those commands are executed on
+a device, a filename equal to the command (spaces are replaced with
+underscores) is generated. CLI output redirection (pipes) are supported.
 It is recommended to type the entire command into the `command` value
 since these are printed to stdout during execution. Using abbreviated
 commands may confuse operators less familiar with some network CLIs.
@@ -100,41 +114,9 @@ commands may confuse operators less familiar with some network CLIs.
 Note that these are just examples and it is common to adjust the
 `command_list` on a per-run basis. For example, if collecting all routing
 tables is important to quickly troubleshoot a routing loop, simply add
-`show ip route` with a corresponding file suffix to the list, and run
-the playbook.
+`show ip route` to the list, and run the playbook.
 
-```
-$ cat group_vars/ios_router.yml
----
-ansible_network_os: "ios"
-command_list:
-  - file_suffix: "cfg"
-    command: "show running-config"
-  - file_suffix: "inv"
-    command: "show inventory"
-  - file_suffix: "lic"
-    command: "show license all"
-  - file_suffix: "ver"
-    command: "show version"
-...
-
-$ cat group_vars/aireos_wlc.yml
----
-ansible_connection: "local"
-ansible_network_os: "aireos"
-command_list:
-  - file_suffix: "wln"
-    command: "show wlan summary"
-  - file_suffix: "inv"
-    command: "show inventory"
-  - file_suffix: "lic"
-    command: "show license all"
-  - file_suffix: "ver"
-    command: "show boot"
-...
-```
-
-## Task summary
+## Task Summary
 To make the playbook easier to read and troubleshoot, whenever a command is
 issued on a device, both the inventory hostname and the command being issued
 are printed to stdout. The example below shows a sample run with a variety
@@ -142,28 +124,17 @@ of devices.
 
 ```
 TASK [ASA >> Gather Cisco ASA information]
-ok: [asav1] => (item=show running-config)
-ok: [asav1] => (item=show inventory)
-ok: [asav1] => (item=show version)
+ok: [asav1]
 
 TASK [IOSXR >> Gather Cisco IOS-XR information]
-ok: [xrv1] => (item=show running-config)
-ok: [xrv1] => (item=show inventory)
-ok: [xrv1] => (item=show license all)
-ok: [xrv1] => (item=show version)
+ok: [xrv1]
 
 TASK [IOS >> Gather Cisco IOS/IOS-XE information]
-ok: [csr1] => (item=show running-config)
-ok: [csr2] => (item=show running-config)
-ok: [csr1] => (item=show inventory)
-ok: [csr2] => (item=show inventory)
-ok: [csr1] => (item=show license all)
-ok: [csr2] => (item=show license all)
-ok: [csr1] => (item=show version)
-ok: [csr2] => (item=show version)
+ok: [csr1]
+ok: [csr2]
 ```
 
-## Output files
+## Output Files
 At the end of the playbook, assuming that `remove_files` is set to
 `false` for the purpose of discussion, the following filesystem
 components are created.
@@ -173,69 +144,129 @@ where N is the number of elements in the relevant `command_list`.
 Ansible inventory hostname and the date/time group (DTG) in UTC are
 included in the file names for easy identification. All files are written
 to `files/` directory and are ignored by git. The format of all text files is
-`<hostname>_<dtg>_<file_suffix>.txt` while the parent directory format is
+`<command_that_was_run>.txt` while the parent directory format is
 `<hostname>_<dtg>/`.
 
 ```
-$ tree files/
+$ tree --charset=asci files/
 files/
-├── asav1_20180603T070140
-│   ├── asav1_20180603T070140_cfg.txt
-│   ├── asav1_20180603T070140_inv.txt
-│   └── asav1_20180603T070140_ver.txt
-├── csr1_20180603T070140
-│   ├── csr1_20180603T070140_cfg.txt
-│   ├── csr1_20180603T070140_inv.txt
-│   ├── csr1_20180603T070140_lic.txt
-│   └── csr1_20180603T070140_ver.txt
-├── csr2_20180603T070140
-│   ├── csr2_20180603T070140_cfg.txt
-│   ├── csr2_20180603T070140_inv.txt
-│   ├── csr2_20180603T070140_lic.txt
-│   └── csr2_20180603T070140_ver.txt
-└── xrv1_20180603T070140
-    ├── xrv1_20180603T070140_cfg.txt
-    ├── xrv1_20180603T070140_inv.txt
-    ├── xrv1_20180603T070140_lic.txt
-    └── xrv1_20180603T070140_ver.txt
+|-- asav1_20210629T142431
+|   |-- show_inventory.txt
+|   |-- show_running-config.txt
+|   `-- show_version.txt
+|-- chr1_20210629T142431
+|   |-- export.txt
+|   |-- system_license_print.txt
+|   `-- system_resource_print.txt
+|-- csr1_20210629T142431
+|   |-- show_inventory.txt
+|   |-- show_license_all.txt
+|   |-- show_running-config.txt
+|   `-- show_version.txt
+|-- csr2_20210629T142431
+|   |-- show_inventory.txt
+|   |-- show_license_all.txt
+|   |-- show_running-config.txt
+|   `-- show_version.txt
+|-- n9kv1_20210629T142431
+|   |-- show_install_active.txt
+|   |-- show_inventory.txt
+|   |-- show_license_usage.txt
+|   `-- show_version.txt
+|-- veos1_20210629T142431
+|   |-- show_inventory.txt
+|   |-- show_license_all.txt
+|   |-- show_running-config.txt
+|   `-- show_version.txt
+|-- vmx1_20210629T142431
+|   |-- show_configuration.txt
+|   |-- show_interfaces_brief.txt
+|   |-- show_system_errors_count.txt
+|   `-- show_system_license.txt
+`-- xrv1_20210629T142431
+    |-- show_inventory.txt
+    |-- show_license_all.txt
+    |-- show_running-config.txt
+    `-- show_version.txt
 ```
 
-The actual text output is shown below. The exclamation-mark delimeters are
-useful when concatenating multiple files together since determining where
-one output ends and another starts is difficult otherwise.
+The actual text output is shown below. You can use the `head -n-0`
+command to view all the outputs from a given device, which prints
+the filename at the start of each output, making it easy to determine
+where one output ends and another begins.
 
 ```
-$ cat files/csr1_20180603T070140/*
-[snip, running-config output omitted for brevity]
-!!!
-!!!   END OUTPUT FROM: show running-config
-!!!
-!!!
-!!! BEGIN OUTPUT FROM: show inventory
-!!!
+$ head -n-0 samples/csr1_20210629T142431/* | less
+==> samples/csr1_20210629T142431/show_inventory.txt <==
 NAME: "Chassis", DESCR: "Cisco CSR1000V Chassis"
-PID: CSR1000V          , VID: V00  , SN: 9VCVGDCB4JW
+PID: CSR1000V          , VID: V00  , SN: 92ASWZPKBOY
 
 NAME: "module R0", DESCR: "Cisco CSR1000V Route Processor"
 PID: CSR1000V          , VID: V00  , SN: JAB1303001C
 
 NAME: "module F0", DESCR: "Cisco CSR1000V Embedded Services Processor"
 PID: CSR1000V          , VID:      , SN:
-!!!
-!!!   END OUTPUT FROM: show inventory
-!!!
-!!!
-!!! BEGIN OUTPUT FROM: show license all
-!!!
-License Store: Primary License Storage
-!!!
-!!!   END OUTPUT FROM: show license all
-!!!
-!!!
-!!! BEGIN OUTPUT FROM: show version
-!!!
-Cisco IOS XE Software, Version 16.08.01a
-[snip, extra output omitted for brevity]
+
+==> samples/csr1_20210629T142431/show_license_all.txt <==
+Smart Licensing Status
+======================
+
+Smart Licensing is ENABLED
+
+Registration:
+  Status: UNREGISTERED
+  Export-Controlled Functionality: NOT ALLOWED
+
+License Authorization:
+  Status: No Licenses in Use
+
+Export Authorization Key:
+  Features Authorized:
+    <none>
+
+Utility:
+  Status: DISABLED
+
+Data Privacy:
+  Sending Hostname: yes
+    Callhome hostname privacy: DISABLED
+    Smart Licensing hostname privacy: DISABLED
+  Version privacy: DISABLED
+
+Transport:
+  Type: Callhome
+
+Miscellaneous:
+  Custom Id: <empty>
+
+License Usage
+=============
+
+No licenses in use
+
+Product Information
+===================
+UDI: PID:CSR1000V,SN:92ASWZPKBOY
+
+Agent Version
+=============
+Smart Agent for Licensing: 5.0.6_rel/47
+
+Reservation Info
+================
+License reservation: DISABLED
+
+==> samples/csr1_20210629T142431/show_running-config.txt <==
+Building configuration...
+
+Current configuration : 10447 bytes
+!
+! Last configuration change at 12:00:08 UTC Mon Jun 28 2021 by admin
+!
+version 17.3
+service timestamps debug datetime msec
+service timestamps log datetime msec
+[snip, running-config output omitted for brevity]
 ```
 
 Finally, the playbook prints out a shell command that can be copy/pasted by

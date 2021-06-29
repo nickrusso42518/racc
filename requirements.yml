@@ -7,6 +7,6 @@ collections:
   - "arista.eos"
   - "junipernetworks.junos"
   - "community.routeros"  # Mikrotik RouterOS
-  - "community.network"  # Cisco AireOS and Nokia SR-OS
+  - "community.network"  # Cisco AireOS
   - "community.general"  # archive module
 ...

@@ -1,7 +1,0 @@
----
-ansible_network_os: "sros"
-command_list:
-  - "show licensing entitlements"
-  - "show card"
-  - "show system information"
-...

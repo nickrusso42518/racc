@@ -4,10 +4,8 @@
 # not can use the legacy provider credentials below with 'local' connection.
 ansible_python_interpreter: "/usr/bin/env python"
 ansible_connection: "network_cli"
-ansible_user: "admin"
-# broken-dawn-7748.edge.mysocket.io
-ansible_password: "n0kia$123"
-ansible_password2: !vault |
+ansible_user: "ansible"
+ansible_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           61643030323961626532333431333639303538313233656264343066383764396664626135633636
           6464333366383938333063336636363234356535643839300a386430363562646232333732356436
