@@ -1,0 +1,206 @@
+sys aom { }
+sys autoscale-group { }
+sys core {
+    bigd-action rotate
+    bigd-manage false
+    bigd-max 1
+    mcpd-action rotate
+    mcpd-manage false
+    mcpd-max 1
+    retention 30
+    tmm-action rotate
+    tmm-manage false
+    tmm-max 1
+}
+sys crypto acceleration-strategy { }
+sys crypto allow-key-export { }
+sys daemon-log-settings clusterd { }
+sys daemon-log-settings csyncd { }
+sys daemon-log-settings icr-eventd { }
+sys daemon-log-settings icrd { }
+sys daemon-log-settings lind { }
+sys daemon-log-settings mcpd { }
+sys daemon-log-settings tmm { }
+sys datastor { }
+sys diags ihealth {
+    expiration 30
+    no-ihealth false
+    options none
+    password none
+    user none
+}
+sys diags ihealth-request {
+    error-str none
+    ihealth-finish-time 0
+    ihealth-start-time 0
+    progress 0
+    qk-progress 0
+    qk-progress-msg none
+    qkview-date 0
+    qkview-filename none
+    qkview-size 0
+    qkview-user none
+    tcpdump-date 0
+    tcpdump-filename none
+    tcpdump-size 0
+}
+sys disk logical-disk HD1 {
+    mode mixed
+    size 81920
+    vg-free 23980
+    vg-in-use 57720
+}
+sys dns {
+    description configured-by-dhcp
+    name-servers { 172.31.0.2 }
+    search { ec2.internal }
+}
+sys dynad settings {
+    development-mode false
+}
+sys ecm cloud-provider aws-ec2 {
+    description "The aws-ec2 parameters"
+    property-template {
+        account { }
+        availability-zone {
+            valid-values { a b c d }
+        }
+        instance-type {
+            valid-values { t2.micro t2.small t2.medium m3.medium m3.large m3.xlarge m3.2xlarge c3.large c3.xlarge c3.2xlarge c3.4xlarge c3.8xlarge r3.large r3.xlarge r3.2xlarge r3.4xlarge r3.8xlarge }
+        }
+        region {
+            valid-values { us-east-1 us-west-1 us-west-2 sa-east-1 eu-west-1 eu-central-1 ap-southeast-2 ap-southeast-1 ap-northeast-1 }
+        }
+    }
+}
+sys ecm cloud-provider dnet {
+    description "The dnet parameters"
+}
+sys ecm cloud-provider vsphere {
+    description "The vsphere parameters"
+    property-template {
+        cloud-host-ip { }
+        dhcp-network-name { }
+        end-point-url { }
+        node-name { }
+    }
+}
+sys ecm config { }
+sys folder Drafts {
+    device-group none
+    inherited-devicegroup true
+    inherited-traffic-group true
+    traffic-group traffic-group-1
+}
+sys fpga firmware-config {
+    type standard-balanced-fpga
+}
+sys global-settings {
+    hostname ip-172-31-37-109.ec2.internal
+}
+sys httpd {
+    ssl-port 8443
+}
+sys icontrol-soap { }
+sys log-rotate { }
+sys management-dhcp sys-mgmt-dhcp-config {
+    request-options { subnet-mask broadcast-address routers domain-name domain-name-servers host-name ntp-servers interface-mtu }
+}
+sys management-ovsdb {
+    bfd-disabled
+    bfd-route-domain none
+    ca-cert-file none
+    cert-file none
+    cert-key-file none
+    disabled
+    flooding-type replicator
+    log-level info
+    logical-routing-type none
+    tunnel-maintenance-mode active
+}
+sys ntp { }
+sys outbound-smtp {
+    from-line-override disabled
+    mailhub localhost
+}
+sys provision ltm {
+    level nominal
+}
+sys scriptd { }
+sys sflow global-settings http { }
+sys sflow global-settings interface { }
+sys sflow global-settings system { }
+sys sflow global-settings vlan { }
+sys snmp {
+    agent-addresses { tcp6:161 udp6:161 }
+    communities {
+        comm-public {
+            community-name public
+            source default
+        }
+    }
+    disk-monitors {
+        root {
+            minspace 2000
+            path /
+        }
+        var {
+            minspace 10000
+            path /var
+        }
+    }
+    process-monitors {
+        bigd {
+            max-processes infinity
+            process bigd
+        }
+        chmand {
+            process chmand
+        }
+        httpd {
+            max-processes infinity
+            process httpd
+        }
+        mcpd {
+            process mcpd
+        }
+        sod {
+            process sod
+        }
+        tmm {
+            max-processes infinity
+            process tmm
+        }
+    }
+}
+sys software update {
+    auto-check enabled
+    auto-phonehome enabled
+    frequency weekly
+}
+sys software volume HD1.1 {
+    active
+    active-requested
+    basebuild 0.0.6
+    build 0.0.6
+    media {
+        HD1.1 {
+            default-boot-location
+            media hd
+            size default
+        }
+    }
+    product BIG-IP
+    status complete
+    version 16.0.1.1
+}
+sys sshd { }
+sys state-mirroring { }
+sys syslog { }
+sys telemd {
+    partition none
+}
+sys turboflex profile-config {
+    type turboflex-adc
+}
+sys url-db download-schedule urldb { }

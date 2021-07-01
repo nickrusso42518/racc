@@ -32,14 +32,17 @@ These are all easy tasks given the abstract architecture of this playbook.
 
 Testing was conducted on the following platforms and versions:
   * Cisco CSR1000v, version 16.12.01a, running in AWS
+  * Cisco CSR1000v, version 17.3.3, running in AWS
   * Cisco XRv9000, version 6.3.1, running in AWS
   * Cisco ASAv, version 9.9.1, running in AWS
+  * Cisco ASAv, version 9.16.1, running in AWS
   * Cisco Nexus 3172T, version 6.0.2.U6.4a, hardware appliance
   * Cisco Nexus 9000v, version 9.3(3), running on VMware ESXi
   * Cisco AireOS vWLC, version 8.3.143.0, running on VMware ESXi
   * Juniper vMX, version 18.4R1, running in AWS
   * Arista vEOS, version 4.22.1FX, running in AWS
   * Mikrotik RouterOS, version 6.44.3, running in AWS
+  * F5 BIGIP, version 16.0.1.1, running in AWS
 
 ```
 $ cat /etc/redhat-release

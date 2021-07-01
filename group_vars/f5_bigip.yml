@@ -1,0 +1,17 @@
+---
+# Tip: default BIGIP VE username is 'admin' on AWS
+# bigip_command does not support network_cli
+ansible_network_os: "bigip"
+ansible_connection: "local"
+provider:
+  server: "{{ inventory_hostname }}"
+  user: "{{ ansible_user }}"
+  ssh_keyfile: "/path/to/privatekey.pem"
+  transport: "cli"
+
+command_list:
+  - "show sys version"
+  - "show auth user"
+  - "show net self"
+  - "show running-config sys"
+...

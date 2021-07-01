@@ -1,0 +1,5 @@
+------------------------------------
+Roles Available for Auth::User admin
+Role   Partition
+------------------------------------
+admin  [All]

@@ -1,0 +1,25 @@
+-----------------------
+Net::Self IP: self_1nic
+-----------------------
+
+  ---------------------------------------
+  | Net::Vlan: internal
+  ---------------------------------------
+  | Interface Name      internal
+  | Mac Address (True)  0e:81:84:bb:76:79
+  | MTU                 9001
+  | Tag                 4094
+  | Customer-Tag         
+
+     -----------------------
+     | Net::Vlan-Member: 1.0
+     -----------------------
+     | Tagged    no
+     | Tag-Mode  none
+
+        ----------------------------------------------------------------
+        | Net::Interface
+        | Name  Status  Bits    Bits  Pkts  Pkts  Drops  Errs      Media
+        |                 In     Out    In   Out                        
+        ----------------------------------------------------------------
+        | 1.0       up  1.7M  193.0K  1.5K   405      0     0  10000T-FD

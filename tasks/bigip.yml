@@ -1,0 +1,8 @@
+---
+# Log in and run the commands specified in the group_vars/ files.
+- name: "BIGIP >> Gather F5 BIGIP information"
+  f5networks.f5_modules.bigip_command:
+    provider: "{{ provider }}"
+    commands: "{{ command_list }}"
+  register: "CLI_OUTPUT"
+...

@@ -1,0 +1,7 @@
+Sys::Version
+Main Package
+  Product     BIG-IP
+  Version     16.0.1.1
+  Build       0.0.6
+  Edition     Point Release 1
+  Date        Fri Jan 29 01:37:28 PST 2021

@@ -6,6 +6,7 @@ collections:
   - "cisco.nxos"
   - "arista.eos"
   - "junipernetworks.junos"
+  - "f5networks.f5_modules"
   - "community.routeros"  # Mikrotik RouterOS
   - "community.network"  # Cisco AireOS
   - "community.general"  # archive module
