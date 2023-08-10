@@ -1,0 +1,4 @@
+391b6e00f133e5082e1bd593a47d5500,files/csr2_20230810T132307/show_running-config.txt
+1bad92e97c14d922e60da2a3631da75e,files/csr2_20230810T132307/show_inventory.txt
+319250846347cb417d6a8ff11f8ae7fe,files/csr2_20230810T132307/show_license_all.txt
+3275e42c88e193c69fafd397b024a50d,files/csr2_20230810T132307/show_version.txt

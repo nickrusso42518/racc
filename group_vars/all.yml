@@ -15,6 +15,7 @@ ansible_password: !vault |
 
 # These additional options seldom change once initially configured.
 ci_test: false
+hash_type: "md5"
 remove_files: true
 archive_format: "zip"
 newline_sequence: "\r\n"

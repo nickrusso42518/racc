@@ -1,0 +1,53 @@
+Smart Licensing Status
+======================
+
+Smart Licensing is ENABLED
+
+Registration:
+  Status: UNREGISTERED
+  Export-Controlled Functionality: NOT ALLOWED
+
+License Authorization: 
+  Status: EVAL MODE
+  Evaluation Period Remaining: 86 days, 3 hours, 45 minutes, 48 seconds
+
+Export Authorization Key:
+  Features Authorized:
+    <none>
+
+Utility:
+  Status: DISABLED
+
+Data Privacy:
+  Sending Hostname: yes
+    Callhome hostname privacy: DISABLED
+    Smart Licensing hostname privacy: DISABLED
+  Version privacy: DISABLED
+
+Transport:
+  Type: Callhome
+
+Miscellaneus:
+  Custom Id: <empty>
+
+License Usage
+==============
+
+(IOS-XRv-9000-vRouter-VM):
+  Description: 
+  Count: 1
+  Version: 1.0
+  Status: EVAL MODE
+  Export status: NOT RESTRICTED
+
+Product Information
+===================
+UDI: PID:R-IOSXRV9000-IMG,SN:F2E02123A63,SUVI:R-IOSXRV9000-IMGF2E02123A63,UUID:423F7D80-E85A-5366-CADC-2DA216D618CA
+
+Agent Version
+=============
+Smart Agent for Licensing: 4.13.32_rel/85
+
+Reservation Info
+================ 
+License reservation: DISABLED

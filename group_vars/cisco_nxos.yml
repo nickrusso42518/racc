@@ -1,6 +1,7 @@
 ---
 ansible_network_os: "nxos"
 command_list:
+  - "show running-config"
   - "show inventory"
   - "show license usage"
   - "show version"

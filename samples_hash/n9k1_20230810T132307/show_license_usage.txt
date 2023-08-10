@@ -1,0 +1,26 @@
+Feature                      Ins  Lic   Status Expiry Date Comments
+                                 Count
+--------------------------------------------------------------------------------
+N9K_LIC_1G                    No    -   Unused             -
+VPN_FABRIC                    No    -   Unused             -
+NXOS_OE_PKG                   No    -   Unused             -
+FCOE_NPV_PKG                  No    -   Unused             -
+SECURITY_PKG                  No    0   Unused             -
+ACI-PREMIER-GF                No    -   Unused             -
+N9K_UPG_EX_10G                No    -   Unused             -
+TP_SERVICES_PKG               No    -   Unused             -
+NXOS_ADVANTAGE_GF             No    -   Unused             -
+NXOS_ADVANTAGE_M4             No    -   Unused             -
+NXOS_ADVANTAGE_XF             No    -   Unused             -
+NXOS_ESSENTIALS_GF            No    -   Unused             -
+NXOS_ESSENTIALS_M4            No    -   Unused             -
+NXOS_ESSENTIALS_XF            No    -   Unused             -
+NXOS_ESSENTIALS_XM            No    -   Unused             -
+SAN_ENTERPRISE_PKG            No    -   Unused             -
+PORT_ACTIVATION_PKG           No    0   Unused             -
+NETWORK_SERVICES_PKG          No    -   Unused             -
+NXOS_ADVANTAGE_M8-16          No    -   Unused             -
+NXOS_ESSENTIALS_M8-16         No    -   Unused             -
+FC_PORT_ACTIVATION_PKG        No    0   Unused             -
+LAN_ENTERPRISE_SERVICES_PKG   No    -   In use             Honor Start 1D 6H
+--------------------------------------------------------------------------------

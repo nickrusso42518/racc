@@ -1,0 +1,47 @@
+Boot Image:
+        NXOS Image: bootflash:///nxos.9.3.3.bin
+
+Active Packages:
+        mtx-openconfig-all-1.0.0.0-9.3.3.lib32_n9000
+
+Active Base Packages:
+        bfd-2.0.0.0-9.3.3.lib32_n9000
+        bgp-2.0.0.0-9.3.3.lib32_n9000
+        container-tracker-2.0.0.0-9.3.3.lib32_n9000
+        dme-2.0.0.0-9.3.3.lib32_n9000
+        eigrp-2.0.0.0-9.3.3.lib32_n9000
+        ext-eth-2.0.0.0-9.3.3.lib32_n9000
+        fcoe-2.0.0.0-9.3.3.lib32_n9000
+        fhrp-2.0.0.0-9.3.3.lib32_n9000
+        guestshell-2.0.0.0-9.3.3.lib32_n9000
+        hw_telemetry-2.0.0.0-9.3.3.lib32_n9000
+        icam-2.0.0.0-9.3.3.lib32_n9000
+        isis-2.0.0.0-9.3.3.lib32_n9000
+        lacp-2.0.0.0-9.3.3.lib32_n9000
+        libnxsdk-2.0.0.0-9.3.3.lib32_n9000
+        lldp-2.0.0.0-9.3.3.lib32_n9000
+        mcast-2.0.0.0-9.3.3.lib32_n9000
+        mpls-2.0.0.0-9.3.3.lib32_n9000
+        mtx-device-2.0.0.0-9.3.3.lib32_n9000
+        mtx-grpc-agent-2.1.0.0-9.3.3.lib32_n9000
+        mtx-infra-2.0.0.0-9.3.3.lib32_n9000
+        mtx-netconf-agent-2.0.0.0-9.3.3.lib32_n9000
+        mtx-restconf-agent-2.0.0.0-9.3.3.lib32_n9000
+        mtx-telemetry-2.0.0.0-9.3.3.lib32_n9000
+        nbproxy-2.0.0.0-9.3.3.lib32_n9000
+        nia-1.2.1.1-9.3.3.lib32_n9000
+        ntp-2.0.0.0-9.3.3.lib32_n9000
+        nxos-ssh-2.0.0.0-9.3.3.lib32_n9000
+        nxsdk-2.0.0.0-9.3.3.lib32_n9000
+        nxsdk_rpc_server-1.0-2.5.0.x86_64
+        ospf-2.0.0.0-9.3.3.lib32_n9000
+        rip-2.0.0.0-9.3.3.lib32_n9000
+        services-2.0.0.0-9.3.3.lib32_n9000
+        snmp-2.0.0.0-9.3.3.lib32_n9000
+        sr-2.0.0.0-9.3.3.lib32_n9000
+        svi-2.0.0.0-9.3.3.lib32_n9000
+        tacacs-2.0.0.0-9.3.3.lib32_n9000
+        telemetry-2.3.4.0-9.3.3.lib32_n9000
+        virtualization-2.0.0.0-9.3.3.lib32_n9000
+        vtp-2.0.0.0-9.3.3.lib32_n9000
+        vxlan-2.0.0.0-9.3.3.lib32_n9000

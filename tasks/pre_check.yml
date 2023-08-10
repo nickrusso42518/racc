@@ -41,9 +41,10 @@
 
     # Identify the output directory string for file names to simplify
     # references later in the process. Example: "files/csr1_20210629T083125"
-    - name: "SYS >> Store output directory"
+    - name: "SYS >> Store output directory and initialize hash list"
       ansible.builtin.set_fact:
         OUTPUT_DIR: "files/{{ inventory_hostname }}_{{ DTG }}"
+        HASHLIST: []
 
     # Each host gets a directory to house the files relevant to that
     # host. For example, if we collect the config, version, and

@@ -1,0 +1,38 @@
+---
+# With the directory created, use the 'commands' template to write the
+# command output to disk within the specified folder with read-only access.
+- name: "BLOCK >> Perform local output functions"
+  block:
+    - name: "SYS >> Write CLI output to disk: {{ OUTPUT_DIR }}/{{ FILENAME }}"
+      ansible.builtin.template:
+        src: "templates/commands.j2"
+        dest: "{{ OUTPUT_DIR }}/{{ FILENAME }}"
+        newline_sequence: "{{ newline_sequence }}"
+        mode: "0444"
+      register: "FILE_RESULT"
+
+    # Only run this sub-block when the hash_type is truthy (not false/null)
+    - name: "BLOCK >> Perform optional file content hashing"
+      block:
+
+        # Read the just-created file from disk, which serves as a sanity check
+        # and ensures that any template customizations are captured in the
+        # final hash computation.
+        - name: "SYS >> Read contents of just-created {{ FILE_RESULT.dest }}"
+          ansible.builtin.set_fact:
+            FILEDATA: "{{ lookup('ansible.builtin.file', FILE_RESULT.dest) }}"
+
+        # Compute the hash for a given file.
+        - name: "SYS >> Compute {{ hash_type }} hash for {{ FILE_RESULT.dest }}"
+          ansible.builtin.set_fact:
+            FILEHASH: "{{ FILEDATA | ansible.builtin.hash(hash_type) }}"
+
+        # Add the hash to the hashlist on a per-host basis.
+        - name: "SYS >> Add {{ FILEHASH }},{{ FILE_RESULT.dest }} to hashlist"
+          ansible.builtin.set_fact:
+            HASHLIST: "{{ HASHLIST + [ FILEHASH ~ ',' ~ FILE_RESULT.dest ] }}"
+
+      when: "hash_type"
+
+  delegate_to: "localhost"
+...

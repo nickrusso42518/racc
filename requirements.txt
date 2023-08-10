@@ -1,6 +1,4 @@
-# Installing "ansible" comes with more than 85 collections (batteries included)
-# ansible==3.4.0
-ansible-base==2.10.11
-paramiko
+ansible-core==2.11.12
+ansible-pylibssh
 yamllint
 ansible-lint

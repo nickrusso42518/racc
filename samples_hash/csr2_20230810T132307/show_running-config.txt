@@ -1,0 +1,255 @@
+Building configuration...
+
+Current configuration : 5178 bytes
+!
+! Last configuration change at 17:02:37 UTC Thu Aug 10 2023 by developer
+!
+version 16.9
+service timestamps debug datetime msec
+service timestamps log datetime localtime
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname csr1000v-1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+logging userinfo
+logging buffered 12000 notifications
+no logging console
+enable secret 5 $1$dAnr$MQbNXMNy//wugqUbtZ2vk/
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+login on-failure log
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-65385644
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-65385644
+ revocation-check none
+ rsakeypair TP-self-signed-65385644
+!
+!
+crypto pki certificate chain TP-self-signed-65385644
+ certificate self-signed 01
+  3082032C 30820214 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  2F312D30 2B060355 04031324 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 36353338 35363434 301E170D 31393035 32323139 33383539 
+  5A170D33 30303130 31303030 3030305A 302F312D 302B0603 55040313 24494F53 
+  2D53656C 662D5369 676E6564 2D436572 74696669 63617465 2D363533 38353634 
+  34308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 0A028201 
+  0100C96F D53A4C23 F96F71E2 BA91DAA3 C4546EAD 399F1B32 CA9BB364 C528FFFD 
+  9F2A0CCE D5FD2756 6452B91B 2DCC328D 6951AEF3 BD25A687 62354EF7 0C68717E 
+  94BF7B1E 320231A5 FFB9B765 A5616FD3 673709D5 7E89DB6D E6A14B85 E3FE2153 
+  DFA8B852 BB37CCB4 4C523450 2A757DB5 8FB13133 0DE79EAE 579DDFE9 EA4B6C2A 
+  CD8DC33E F69A0F45 020367D1 0C8451F1 AB9C0891 2A1AF1E5 2245E739 43CB1F48 
+  03324EDF 7A647E25 86552D27 EEE5E05D EB01D886 4D00C47A B9B022AD AACA9E84 
+  5D5627BD B0D6F2FC C5103F0E 808E5822 86B63301 C2B7B50C BBA6F3D1 471F2A53 
+  B02E5DA1 DC1ECF46 116EAC77 160090AF 7AB23919 1896AA07 6893E638 8CE05F53 
+  E5EB0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603 
+  551D2304 18301680 14A162A4 D3CD7E6B 7E775D4E CA02E2DA 5AEBC668 45301D06 
+  03551D0E 04160414 A162A4D3 CD7E6B7E 775D4ECA 02E2DA5A EBC66845 300D0609 
+  2A864886 F70D0101 05050003 82010100 8034A615 EED522BA 8A4D45D9 107A1C72 
+  B622ECB6 26EB96AA AD26A14D 34FC54B6 93F03F5D F1C1F1DB C716B213 67342ADF 
+  0E4F4313 00C19914 B8EAD89F D90FDCF7 943D9304 3E3158A7 2E7558D3 C90D9540 
+  F8CDB4AE 9A266418 DA396402 6954BAA6 D49FB91B 5795EBD7 17C260BA AD2DCD40 
+  6C86E58F 3D521061 A7ADC34D B1875BBA A5EC9877 57D65870 1134D226 EA884C43 
+  CEA1F154 905F1872 E5FA575F 9C060B34 BA18FBB5 E03AB440 12D37659 B70A7C8A 
+  9D32DD93 95BBE653 F39D1A30 2062C41C B3857FA5 9C6E2FAE 61E10F20 7B8994B9 
+  DADCE497 38BD1450 8D1BF507 E9C0CD94 EFED9FA2 D888C58F 700A7182 1A2F12B2 
+  32AF600E 7623C1E2 026B06FA EA75E800
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 926V75BDNRJ
+license accept end user agreement
+license boot level ax
+no license smart enable
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+archive
+ log config
+  logging enable
+!
+netconf-yang
+!
+restconf
+!
+username developer privilege 15 secret 5 $1$Anez$e3JokiVvI4unDNdZ20HEG1
+username root privilege 15 secret 5 $1$mB0Z$srZ2lQWnzAC5JjFaTzJBn1
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+class-map match-any ANY
+ match access-group name CUST-CMAP
+!
+policy-map 200M
+ class ANY
+policy-map 100M
+ class ANY
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback2
+ description My second RESTCONF loopback
+ ip address 10.2.1.1 255.255.255.0
+!
+interface Loopback55
+ description test55
+ ip address 192.168.10.1 255.255.255.255
+ service-policy input 200M
+ service-policy output 200M
+!
+interface Loopback500
+ description test interface
+ ip address 172.31.1.1 255.255.255.0
+!
+interface Loopback501
+ description MOK
+ ip address 172.31.11.11 255.255.255.0
+!
+interface GigabitEthernet1
+ description MANAGEMENT INTERFACE - DON'T TOUCH ME
+ ip address 10.10.20.48 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ description Network Interface
+ ip address 1.1.1.1 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ description Network Interface
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+router ospf 1
+!
+router bgp 65001
+ bgp log-neighbor-changes
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family vpnv4
+ exit-address-family
+ !
+ address-family rtfilter unicast
+ exit-address-family
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet1 10.10.20.254
+!
+ip ssh maxstartups 128
+ip ssh rsa keypair-name ssh-key
+ip ssh version 2
+ip scp server enable
+!
+!
+ip access-list extended CUST-CMAP
+ permit ip any any
+logging trap errors
+logging facility local5
+logging snmp-trap emergencies
+logging snmp-trap alerts
+logging snmp-trap critical
+logging snmp-trap errors
+logging snmp-trap warnings
+logging host 1.1.1.2
+logging host 1.1.1.3
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+banner motd ^C
+this is my MOTD for Today
+^C
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ exec-timeout 0 0
+ login local
+ transport input ssh
+!
+!
+!
+!
+!
+!
+end

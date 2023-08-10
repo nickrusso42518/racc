@@ -1,0 +1,14 @@
+Cisco IOS XR Software, Version 7.3.2
+Copyright (c) 2013-2021 by Cisco Systems, Inc.
+
+Build Information:
+ Built By     : ingunawa
+ Built On     : Wed Oct 13 20:00:36 PDT 2021
+ Built Host   : iox-ucs-017
+ Workspace    : /auto/srcarchive17/prod/7.3.2/xrv9k/ws
+ Version      : 7.3.2
+ Location     : /opt/cisco/XR/packages/
+ Label        : 7.3.2-0
+
+cisco IOS-XRv 9000 () processor
+System uptime is 6 hours 28 minutes
