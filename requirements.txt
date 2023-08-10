@@ -1,4 +1,4 @@
 ansible-core==2.11.12
 ansible-pylibssh
-yamllint
 ansible-lint
+yamllint

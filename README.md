@@ -11,6 +11,8 @@ This playbook runs arbitrary commands on a given node, stores the
 output in a flat text file, and archives the entire "run" in an archive
 file for easy copying to management stations via SCP. It is generally used
 for configuration backups, hardware inventory, and license information.
+The tool also supports automatic generation of file content hashes, helping
+to determine configuration drift across collection batches.
 
 > Contact information:\
 > Email:    njrusmc@gmail.com\
@@ -31,19 +33,22 @@ To add a new device type, create a new task file in the
 These are all easy tasks given the abstract architecture of this playbook.
 
 Testing was conducted on the following platforms and versions:
-  * Cisco CSR1000v, version 16.12.01a, running in AWS
+  * Cisco Catalyst 8000v, version 17.9.2, running in Cisco DevNet Sandbox
   * Cisco CSR1000v, version 17.3.3, running in AWS
+  * Cisco CSR1000v, version 16.12.01a, running in AWS
+  * Cisco CSR1000v, version 16.9.3, running in Cisco DevNet Sandbox
   * Cisco XRv9000, version 6.3.1, running in AWS
+  * Cisco XRv9000, version 7.3.2, running in Cisco DevNet Sandbox
   * Cisco ASAv, version 9.9.1, running in AWS
   * Cisco ASAv, version 9.16.1, running in AWS
   * Cisco Nexus 3172T, version 6.0.2.U6.4a, hardware appliance
   * Cisco Nexus 9000v, version 9.3(3), running on VMware ESXi
+  * Cisco Nexus 9000v, version 9.3(3), running in Cisco DevNet Sandbox
   * Cisco AireOS vWLC, version 8.3.143.0, running on VMware ESXi
   * Juniper vMX, version 18.4R1, running in AWS
   * Arista vEOS, version 4.22.1FX, running in AWS
   * Mikrotik RouterOS, version 6.44.3, running in AWS
   * F5 BIGIP, version 16.0.1.1, running in AWS
-
 ```
 $ cat /etc/redhat-release
 Red Hat Enterprise Linux Server release 7.4 (Maipo)
@@ -53,16 +58,15 @@ Linux ip-10-125-0-100.ec2.internal 3.10.0-693.el7.x86_64 #1 SMP
   Thu Jul 6 19:56:57 EDT 2017 x86_64 x86_64 x86_64 GNU/Linux
 
 $ ansible --version
-ansible 2.10.11
-  config file = /home/centos/code/racc/ansible.cfg
-  configured module search path = ['/home/centos/.ansible/plugins/modules',
-    '/usr/share/ansible/plugins/modules']
-  ansible python module location =
-    /home/centos/environments/ans3/lib/python3.7/site-packages/ansible
-  executable location = /home/centos/environments/ans3/bin/ansible
-  python version = 3.7.3 (default, Apr 28 2019, 11:01:35)
-    [GCC 4.8.5 20150623 (Red Hat 4.8.5-36)]
-
+ansible [core 2.11.12] 
+  config file = /home/ec2-user/racc/ansible.cfg
+  configured module search path = ['/home/ec2-user/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/ec2-user/environments/racc/lib/python3.7/site-packages/ansible
+  ansible collection location = /home/ec2-user/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/ec2-user/environments/racc/bin/ansible
+  python version = 3.7.3 (default, Aug 27 2019, 16:56:53) [GCC 4.8.5 20150623 (Red Hat 4.8.5-36)]
+  jinja version = 3.1.2
+  libyaml = True
 ```
 
 ## Getting Started
@@ -90,6 +94,13 @@ and formatting. These are not often modified:
     retaining all the uncompressed text files on the control machine is not
     a long-term solution. Setting this to `false` is useful for quick tests
     or troubleshooting.
+  * `hash_type`: A string that specifies what hash algorithm to use when
+    computing the hash of the contents of each file. These are written to
+    a consolidated CSV file on a per-device basis. The algorithms available
+    vary based on your installed Python `hashlib` version, but simple
+    algorithms like `"md5"` and `"sha1"` are recommended. You can set this
+    value to `false` to skip the procecss of generating hashes, which will
+    cause the playbook to run a little faster.
   * `newline_sequence`: Determines what kind of line terminator to use for
     output files. See the Ansible documentation for a full list of options.
   * `archive_format`: Determines what kind of archive to create when the
@@ -199,8 +210,8 @@ the filename at the start of each output, making it easy to determine
 where one output ends and another begins.
 
 ```
-$ head -n-0 samples/csr1_20210629T142431/*
-==> samples/csr1_20210629T142431/show_inventory.txt <==
+$ head -n-0 samples_nohash/csr1_20210629T142431/*
+==> samples_nohash/csr1_20210629T142431/show_inventory.txt <==
 NAME: "Chassis", DESCR: "Cisco CSR1000V Chassis"
 PID: CSR1000V          , VID: V00  , SN: 92ASWZPKBOY
 
@@ -210,7 +221,7 @@ PID: CSR1000V          , VID: V00  , SN: JAB1303001C
 NAME: "module F0", DESCR: "Cisco CSR1000V Embedded Services Processor"
 PID: CSR1000V          , VID:      , SN:
 
-==> samples/csr1_20210629T142431/show_license_all.txt <==
+==> samples_nohash/csr1_20210629T142431/show_license_all.txt <==
 Smart Licensing Status
 ======================
 
@@ -259,7 +270,7 @@ Reservation Info
 ================
 License reservation: DISABLED
 
-==> samples/csr1_20210629T142431/show_running-config.txt <==
+==> samples_nohash/csr1_20210629T142431/show_running-config.txt <==
 Building configuration...
 
 Current configuration : 10447 bytes
@@ -270,6 +281,33 @@ version 17.3
 service timestamps debug datetime msec
 service timestamps log datetime msec
 [snip, running-config output omitted for brevity]
+```
+
+If `hash_type` is not a false-y value (such as Boolean `false` or `null`),
+you'll see a `*_hashes.txt` file as well. This file contains a two-column
+CSV file with the hash first and the filename second.
+
+```
+$ tree --charset=ascii
+.
+|-- csr1_20230810T135247
+.   |-- md5_hashes.txt
+.   |-- show_inventory.txt
+.   |-- show_license_all.txt
+.   |-- show_running-config.txt
+.   `-- show_version.txt
+
+$ cat csr1_20230810T135247/md5_hashes.txt
+2860be7f5bdde30faeb73368b8420e4e,files/csr1_20230810T135247/show_running-config.txt
+7515812af4e1d1d980c382a2baf25e20,files/csr1_20230810T135247/show_inventory.txt
+c2a07965c62c27b74b33f02308c5771c,files/csr1_20230810T135247/show_license_all.txt
+28d8892d1939827858f050efc0984be1,files/csr1_20230810T135247/show_version.txt
+
+$ column -s, -t csr1_20230810T135247/md5_hashes.txt 
+2860be7f5bdde30faeb73368b8420e4e  files/csr1_20230810T135247/show_running-config.txt
+7515812af4e1d1d980c382a2baf25e20  files/csr1_20230810T135247/show_inventory.txt
+c2a07965c62c27b74b33f02308c5771c  files/csr1_20230810T135247/show_license_all.txt
+28d8892d1939827858f050efc0984be1  files/csr1_20230810T135247/show_version.txt
 ```
 
 Finally, the playbook prints out a shell command that can be copy/pasted by

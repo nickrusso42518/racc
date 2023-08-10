@@ -50,6 +50,7 @@
       ansible.builtin.copy:
         content: "{{ HASHLIST | join(newline_sequence) }}"
         dest: "{{ OUTPUT_DIR }}/{{ hash_type }}_hashes.txt"
+        mode: "0444"
       when: "hash_type"
 
     - name: "BLOCK >> Post-processing on control machine"

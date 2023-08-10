@@ -1,0 +1,1 @@
+var_naming_pattern: "^[A-Za-z_]*$" 
