@@ -1,0 +1,335 @@
+PLAY [Get information from network devices] **************************************************************************************
+
+TASK [INCLUDE >> Error checking and log setup] ***********************************************************************************
+included: /home/ec2-user/racc/tasks/pre_check.yml for csr1, csr2, n9k1, xrv1
+
+TASK [SYS >> Perform basic error checking on core variables] *********************************************************************
+ok: [csr1 -> localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [csr2 -> localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [n9k1 -> localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [xrv1 -> localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [LOG >> Get ansible date/time facts] ****************************************************************************************
+ok: [csr1 -> localhost]
+
+TASK [LOG >> Store DTG as fact] **************************************************************************************************
+ok: [csr1 -> localhost]
+
+TASK [SYS >> Create files/ and archives/ directories] ****************************************************************************
+changed: [csr1 -> localhost] => (item=archives)
+changed: [csr1 -> localhost] => (item=files)
+
+TASK [SYS >> Store output directory and initialize hash list] ********************************************************************
+ok: [csr1 -> localhost]
+ok: [csr2 -> localhost]
+ok: [n9k1 -> localhost]
+ok: [xrv1 -> localhost]
+
+TASK [SYS >> Create directory per network device] ********************************************************************************
+changed: [csr1 -> localhost]
+changed: [csr2 -> localhost]
+changed: [n9k1 -> localhost]
+changed: [xrv1 -> localhost]
+
+TASK [SYS >> Include tasks for various network device types] *********************************************************************
+included: /home/ec2-user/racc/tasks/ios.yml for csr1, csr2
+included: /home/ec2-user/racc/tasks/nxos.yml for n9k1
+included: /home/ec2-user/racc/tasks/iosxr.yml for xrv1
+
+TASK [IOS >> Gather Cisco IOS/IOS-XE information] ********************************************************************************
+ok: [csr2]
+ok: [csr1]
+
+TASK [NXOS >> Gather Cisco NXOS information] *************************************************************************************
+ok: [n9k1]
+
+TASK [IOSXR >> Gather Cisco IOS-XR information] **********************************************************************************
+ok: [xrv1]
+
+TASK [SYS >> Include tasks to generate mock output for CI] ***********************************************************************
+skipping: [csr1]
+skipping: [csr2]
+skipping: [n9k1]
+skipping: [xrv1]
+
+TASK [SYS >> Sanity check; ensure CLI_OUTPUT is valid] ***************************************************************************
+ok: [csr1] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [csr2] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [n9k1] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [xrv1] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [SYS >> Include tasks to perform output file functions] *********************************************************************
+included: /home/ec2-user/racc/tasks/outputs.yml for csr1 => (item=show running-config)
+included: /home/ec2-user/racc/tasks/outputs.yml for csr1 => (item=show inventory)
+included: /home/ec2-user/racc/tasks/outputs.yml for csr1 => (item=show license all)
+included: /home/ec2-user/racc/tasks/outputs.yml for csr1 => (item=show version)
+included: /home/ec2-user/racc/tasks/outputs.yml for csr2 => (item=show running-config)
+included: /home/ec2-user/racc/tasks/outputs.yml for csr2 => (item=show inventory)
+included: /home/ec2-user/racc/tasks/outputs.yml for csr2 => (item=show license all)
+included: /home/ec2-user/racc/tasks/outputs.yml for csr2 => (item=show version)
+included: /home/ec2-user/racc/tasks/outputs.yml for n9k1 => (item=show running-config)
+included: /home/ec2-user/racc/tasks/outputs.yml for n9k1 => (item=show inventory)
+included: /home/ec2-user/racc/tasks/outputs.yml for n9k1 => (item=show license usage)
+included: /home/ec2-user/racc/tasks/outputs.yml for n9k1 => (item=show version)
+included: /home/ec2-user/racc/tasks/outputs.yml for n9k1 => (item=show install active)
+included: /home/ec2-user/racc/tasks/outputs.yml for xrv1 => (item=show running-config)
+included: /home/ec2-user/racc/tasks/outputs.yml for xrv1 => (item=show inventory)
+included: /home/ec2-user/racc/tasks/outputs.yml for xrv1 => (item=show license all)
+included: /home/ec2-user/racc/tasks/outputs.yml for xrv1 => (item=show version)
+
+TASK [SYS >> Write CLI output to disk: files/csr1_20230811T074823/show_running-config.txt] ***************************************
+changed: [csr1 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/csr1_20230811T074823/show_running-config.txt] ***********************************
+ok: [csr1 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/csr1_20230811T074823/show_running-config.txt] ********************************************
+ok: [csr1 -> localhost]
+
+TASK [SYS >> Add 764c8f490b9038afe5a618854bb21852,files/csr1_20230811T074823/show_running-config.txt to hashlist] ****************
+ok: [csr1 -> localhost]
+
+TASK [SYS >> Write CLI output to disk: files/csr1_20230811T074823/show_inventory.txt] ********************************************
+changed: [csr1 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/csr1_20230811T074823/show_inventory.txt] ****************************************
+ok: [csr1 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/csr1_20230811T074823/show_inventory.txt] *************************************************
+ok: [csr1 -> localhost]
+
+TASK [SYS >> Add fcd7bfac12290c1d7bd94bc195504d37,files/csr1_20230811T074823/show_inventory.txt to hashlist] *********************
+ok: [csr1 -> localhost]
+
+TASK [SYS >> Write CLI output to disk: files/csr1_20230811T074823/show_license_all.txt] ******************************************
+changed: [csr1 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/csr1_20230811T074823/show_license_all.txt] **************************************
+ok: [csr1 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/csr1_20230811T074823/show_license_all.txt] ***********************************************
+ok: [csr1 -> localhost]
+
+TASK [SYS >> Add d3eaa829011e49cf04603ee926208a17,files/csr1_20230811T074823/show_license_all.txt to hashlist] *******************
+ok: [csr1 -> localhost]
+
+TASK [SYS >> Write CLI output to disk: files/csr1_20230811T074823/show_version.txt] **********************************************
+changed: [csr1 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/csr1_20230811T074823/show_version.txt] ******************************************
+ok: [csr1 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/csr1_20230811T074823/show_version.txt] ***************************************************
+ok: [csr1 -> localhost]
+
+TASK [SYS >> Add 705640cd7519ce509b373f3243c45688,files/csr1_20230811T074823/show_version.txt to hashlist] ***********************
+ok: [csr1 -> localhost]
+
+TASK [SYS >> Write CLI output to disk: files/csr2_20230811T074823/show_running-config.txt] ***************************************
+changed: [csr2 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/csr2_20230811T074823/show_running-config.txt] ***********************************
+ok: [csr2 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/csr2_20230811T074823/show_running-config.txt] ********************************************
+ok: [csr2 -> localhost]
+
+TASK [SYS >> Add 6456a518459fa76e4f31b238476f688c,files/csr2_20230811T074823/show_running-config.txt to hashlist] ****************
+ok: [csr2 -> localhost]
+
+TASK [SYS >> Write CLI output to disk: files/csr2_20230811T074823/show_inventory.txt] ********************************************
+changed: [csr2 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/csr2_20230811T074823/show_inventory.txt] ****************************************
+ok: [csr2 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/csr2_20230811T074823/show_inventory.txt] *************************************************
+ok: [csr2 -> localhost]
+
+TASK [SYS >> Add 01f527e7c5d20ebfe1b0b84e4b2d2198,files/csr2_20230811T074823/show_inventory.txt to hashlist] *********************
+ok: [csr2 -> localhost]
+
+TASK [SYS >> Write CLI output to disk: files/csr2_20230811T074823/show_license_all.txt] ******************************************
+changed: [csr2 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/csr2_20230811T074823/show_license_all.txt] **************************************
+ok: [csr2 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/csr2_20230811T074823/show_license_all.txt] ***********************************************
+ok: [csr2 -> localhost]
+
+TASK [SYS >> Add 6b3a5e40ba7ba49fe23722b4cc81fa95,files/csr2_20230811T074823/show_license_all.txt to hashlist] *******************
+ok: [csr2 -> localhost]
+
+TASK [SYS >> Write CLI output to disk: files/csr2_20230811T074823/show_version.txt] **********************************************
+changed: [csr2 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/csr2_20230811T074823/show_version.txt] ******************************************
+ok: [csr2 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/csr2_20230811T074823/show_version.txt] ***************************************************
+ok: [csr2 -> localhost]
+
+TASK [SYS >> Add 0657f9404508bc4a83ae0870c0754e8b,files/csr2_20230811T074823/show_version.txt to hashlist] ***********************
+ok: [csr2 -> localhost]
+
+TASK [SYS >> Write CLI output to disk: files/n9k1_20230811T074823/show_running-config.txt] ***************************************
+changed: [n9k1 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/n9k1_20230811T074823/show_running-config.txt] ***********************************
+ok: [n9k1 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/n9k1_20230811T074823/show_running-config.txt] ********************************************
+ok: [n9k1 -> localhost]
+
+TASK [SYS >> Add bc1a4ab8adf643b84e4ae282be2d9670,files/n9k1_20230811T074823/show_running-config.txt to hashlist] ****************
+ok: [n9k1 -> localhost]
+
+TASK [SYS >> Write CLI output to disk: files/n9k1_20230811T074823/show_inventory.txt] ********************************************
+changed: [n9k1 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/n9k1_20230811T074823/show_inventory.txt] ****************************************
+ok: [n9k1 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/n9k1_20230811T074823/show_inventory.txt] *************************************************
+ok: [n9k1 -> localhost]
+
+TASK [SYS >> Add 26e6fe86a695183c13849c40c9ddaae8,files/n9k1_20230811T074823/show_inventory.txt to hashlist] *********************
+ok: [n9k1 -> localhost]
+
+TASK [SYS >> Write CLI output to disk: files/n9k1_20230811T074823/show_license_usage.txt] ****************************************
+changed: [n9k1 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/n9k1_20230811T074823/show_license_usage.txt] ************************************
+ok: [n9k1 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/n9k1_20230811T074823/show_license_usage.txt] *********************************************
+ok: [n9k1 -> localhost]
+
+TASK [SYS >> Add 7e9c32fd679c607c228cea2d52887fb6,files/n9k1_20230811T074823/show_license_usage.txt to hashlist] *****************
+ok: [n9k1 -> localhost]
+
+TASK [SYS >> Write CLI output to disk: files/n9k1_20230811T074823/show_version.txt] **********************************************
+changed: [n9k1 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/n9k1_20230811T074823/show_version.txt] ******************************************
+ok: [n9k1 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/n9k1_20230811T074823/show_version.txt] ***************************************************
+ok: [n9k1 -> localhost]
+
+TASK [SYS >> Add 08bc676fa0261a2e255dda3dc46cb8c8,files/n9k1_20230811T074823/show_version.txt to hashlist] ***********************
+ok: [n9k1 -> localhost]
+
+TASK [SYS >> Write CLI output to disk: files/n9k1_20230811T074823/show_install_active.txt] ***************************************
+changed: [n9k1 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/n9k1_20230811T074823/show_install_active.txt] ***********************************
+ok: [n9k1 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/n9k1_20230811T074823/show_install_active.txt] ********************************************
+ok: [n9k1 -> localhost]
+
+TASK [SYS >> Add 358c423e26688b2e5e8149c5addda3ea,files/n9k1_20230811T074823/show_install_active.txt to hashlist] ****************
+ok: [n9k1 -> localhost]
+
+TASK [SYS >> Write CLI output to disk: files/xrv1_20230811T074823/show_running-config.txt] ***************************************
+changed: [xrv1 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/xrv1_20230811T074823/show_running-config.txt] ***********************************
+ok: [xrv1 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/xrv1_20230811T074823/show_running-config.txt] ********************************************
+ok: [xrv1 -> localhost]
+
+TASK [SYS >> Add 8f6c43b07ff133e102ddbe75964f5302,files/xrv1_20230811T074823/show_running-config.txt to hashlist] ****************
+ok: [xrv1 -> localhost]
+
+TASK [SYS >> Write CLI output to disk: files/xrv1_20230811T074823/show_inventory.txt] ********************************************
+changed: [xrv1 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/xrv1_20230811T074823/show_inventory.txt] ****************************************
+ok: [xrv1 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/xrv1_20230811T074823/show_inventory.txt] *************************************************
+ok: [xrv1 -> localhost]
+
+TASK [SYS >> Add b6fd7a1b001524998643584181a3d8a4,files/xrv1_20230811T074823/show_inventory.txt to hashlist] *********************
+ok: [xrv1 -> localhost]
+
+TASK [SYS >> Write CLI output to disk: files/xrv1_20230811T074823/show_license_all.txt] ******************************************
+changed: [xrv1 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/xrv1_20230811T074823/show_license_all.txt] **************************************
+ok: [xrv1 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/xrv1_20230811T074823/show_license_all.txt] ***********************************************
+ok: [xrv1 -> localhost]
+
+TASK [SYS >> Add 21d5b618c9af642992d7975d7b835f60,files/xrv1_20230811T074823/show_license_all.txt to hashlist] *******************
+ok: [xrv1 -> localhost]
+
+TASK [SYS >> Write CLI output to disk: files/xrv1_20230811T074823/show_version.txt] **********************************************
+changed: [xrv1 -> localhost]
+
+TASK [SYS >> Read contents of just-created files/xrv1_20230811T074823/show_version.txt] ******************************************
+ok: [xrv1 -> localhost]
+
+TASK [SYS >> Compute md5 hash for files/xrv1_20230811T074823/show_version.txt] ***************************************************
+ok: [xrv1 -> localhost]
+
+TASK [SYS >> Add 34295a53235633c729a33f0e444a07c1,files/xrv1_20230811T074823/show_version.txt to hashlist] ***********************
+ok: [xrv1 -> localhost]
+
+TASK [SYS >> Write md5 hashes to disk] *******************************************************************************************
+changed: [n9k1]
+changed: [csr1]
+changed: [csr2]
+changed: [xrv1]
+
+TASK [SYS >> Store archive path/filename] ****************************************************************************************
+ok: [csr1 -> localhost]
+
+TASK [SYS >> Archive files into a zip] *******************************************************************************************
+changed: [csr1 -> localhost]
+
+TASK [SYS >> Copy the command below to SCP the archive off-box] ******************************************************************
+ok: [csr1 -> localhost] => {
+    "msg": "scp archives/commands_20230811T074823.zip nick@192.0.2.1:/racc/"
+}
+
+TASK [SYS >> Remove network device directory? True] ******************************************************************************
+ok: [csr1]
+ok: [n9k1]
+ok: [csr2]
+ok: [xrv1]
+
+PLAY RECAP ***********************************************************************************************************************
+csr1                       : ok=35   changed=8    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+csr2                       : ok=29   changed=6    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+n9k1                       : ok=34   changed=7    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+xrv1                       : ok=29   changed=6    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   

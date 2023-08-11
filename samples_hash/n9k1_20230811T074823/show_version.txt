@@ -20,12 +20,12 @@ Software
 
 Hardware
   cisco Nexus9000 C9300v Chassis 
-  Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz with 16409032 kB of memory.
+  Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz with 16409028 kB of memory.
   Processor Board ID 9N3KD63KWT0
 
   Device name: sbx-ao
   bootflash:    4287040 kB
-Kernel uptime is 1 day(s), 6 hour(s), 19 minute(s), 51 second(s)
+Kernel uptime is 0 day(s), 0 hour(s), 47 minute(s), 57 second(s)
 
 Last reset 
   Reason: Unknown

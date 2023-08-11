@@ -9,7 +9,7 @@ Registration:
 
 License Authorization: 
   Status: EVAL MODE
-  Evaluation Period Remaining: 86 days, 3 hours, 45 minutes, 48 seconds
+  Evaluation Period Remaining: 85 days, 9 hours, 20 minutes, 34 seconds
 
 Export Authorization Key:
   Features Authorized:

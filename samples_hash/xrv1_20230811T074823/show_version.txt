@@ -11,4 +11,4 @@ Build Information:
  Label        : 7.3.2-0
 
 cisco IOS-XRv 9000 () processor
-System uptime is 6 hours 28 minutes
+System uptime is 1 day 54 minutes

@@ -1,0 +1,5 @@
+bc1a4ab8adf643b84e4ae282be2d9670,files/n9k1_20230811T074823/show_running-config.txt
+26e6fe86a695183c13849c40c9ddaae8,files/n9k1_20230811T074823/show_inventory.txt
+7e9c32fd679c607c228cea2d52887fb6,files/n9k1_20230811T074823/show_license_usage.txt
+08bc676fa0261a2e255dda3dc46cb8c8,files/n9k1_20230811T074823/show_version.txt
+358c423e26688b2e5e8149c5addda3ea,files/n9k1_20230811T074823/show_install_active.txt

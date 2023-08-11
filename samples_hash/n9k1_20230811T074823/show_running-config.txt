@@ -1,6 +1,6 @@
 !Command: show running-config
-!Running configuration last done at: Tue Aug  8 17:44:40 2023
-!Time: Tue Aug  8 18:05:05 2023
+!Running configuration last done at: Wed Aug  9 11:44:13 2023
+!Time: Wed Aug  9 12:25:12 2023
 
 version 9.3(3) Bios:version  
 switchname sbx-ao
@@ -16,22 +16,12 @@ vdc sbx-ao id 1
 feature nxapi
 feature bash-shell
 feature scp-server
-cfs eth distribute
-nv overlay evpn
 feature ospf
 feature bgp
-feature pim
-feature pim6
-feature fabric forwarding
 feature netconf
 feature restconf
 feature grpc
 feature interface-vlan
-feature lacp
-feature dhcp
-feature vpc
-
-mac address-table aging-time 1900
 
 username admin password 5 $5$QHsjkRNS$AmVcv7uxx4xYtWYCiinb.T5Jmkzm1rQ7G0ccMjXqzIC  role network-admin
 
@@ -50,18 +40,13 @@ The following programmability features are already enabled:
 Thanks for stopping by.
 ^
 
-ssh login-attempts 10
-
 ip domain-lookup
-ip domain-name global.com
 radius-server host 172.16.1.12 key 7 "VwritosWsgsziGio" authentication accounting 
 radius-server host 172.16.1.13 key 7 "VwritosWsgsziGio" authentication accounting 
 aaa group server radius AAA-Radius-Group 
     server 172.16.1.12 
     server 172.16.1.13 
     use-vrf management
-ipv6 nd raguard policy test
-!
 copp profile strict
 snmp-server contact DevNet-Sandbox
 snmp-server location Always-On-Sandbox
@@ -102,153 +87,58 @@ ntp source-interface mgmt0
 ntp authenticate
 ntp authentication-key 1 md5 QPTFmtc 7
 
-ip pim rp-address 10.10.140.40 group-list 224.0.0.0/4
-ip pim ssm range 232.0.0.0/8
 vlan 1-9,100-105
 vlan 100
-  name VMotion
+  name mgmt
 vlan 101
-  name Web
+  name LL_VLAN_DEMO1
 vlan 102
-  name App
+  name dev
 vlan 103
-  name DB
+  name test
 vlan 104
-  name ESXI-MGMT
+  name security
 vlan 105
-  name ACI-DCI
+  name iot
 
-service dhcp
-ip dhcp relay
-ipv6 dhcp relay
 vrf context management
-  ip domain-name vrf.com
   ip route 0.0.0.0/0 10.10.20.254
-vrf context telco-tenant
-  vni 900001
-  rd auto
-  address-family ipv4 unicast
-    route-target both auto
-    route-target both auto evpn
-  address-family ipv6 unicast
-    route-target both auto
-    route-target both auto evpn
-vrf context test-1d
-  address-family ipv6 unicast
-vrf context test-vrfd
-  address-family ipv4 unicast
-vrf context test-vrfsd
-  address-family ipv6 unicast
-vrf context test-vrfsdd
-  address-family ipv6 unicast
-switching-mode store-forward
-vpc domain 10
-  peer-switch
-  peer-keepalive destination 10.1.1.62 source 10.1.1.61
-  peer-gateway
-  ip arp synchronize
-
 
 interface Vlan1
-  no ip redirects
-  no ipv6 redirects
 
 interface Vlan100
   description mgmt svi - DEMO PLEASE DON'T TOUCH
-  no ip redirects
   ip address 172.16.100.1/24
-  no ipv6 redirects
   ip router ospf 1 area 0.0.0.0
 
 interface Vlan101
   description prod svi - DEMO PLEASE DON'T TOUCH
-  no ip redirects
   ip address 172.16.101.1/24
-  no ipv6 redirects
   ip router ospf 1 area 0.0.0.0
 
 interface Vlan102
   description dev svi - DEMO PLEASE DON'T TOUCH
-  no ip redirects
   ip address 172.16.102.1/24
-  no ipv6 redirects
   ip router ospf 1 area 0.0.0.0
 
 interface Vlan103
   description test svi - DEMO PLEASE DON'T TOUCH
-  no ip redirects
   ip address 172.16.103.1/24
-  no ipv6 redirects
   ip router ospf 1 area 0.0.0.0
 
 interface Vlan104
   description security svi - DEMO PLEASE DON'T TOUCH
-  no ip redirects
   ip address 172.16.104.1/24
-  no ipv6 redirects
   ip router ospf 1 area 0.0.0.0
 
 interface Vlan105
   description iot svi - DEMO PLEASE DON'T TOUCH
-  no ip redirects
   ip address 172.16.105.1/24
-  no ipv6 redirects
   ip router ospf 1 area 0.0.0.0
-
-interface port-channel10
-  switchport mode trunk
-  spanning-tree port type network
-  speed 10000
-  vpc peer-link
 
 interface port-channel11
   switchport mode trunk
   switchport trunk allowed vlan 100-110
-
-interface port-channel16
-  switchport access vlan 10
-
-interface port-channel92
-  switchport mode trunk
-  switchport trunk native vlan 406
-  switchport trunk allowed vlan 524-526
-
-interface port-channel99
-  switchport access vlan 10
-  switchport trunk native vlan 401
-  switchport trunk allowed vlan 100-110
-
-interface port-channel100
-  switchport mode trunk
-  switchport trunk allowed vlan 101-105
-  spanning-tree port type edge trunk
-  speed 10000
-  vpc 100
-
-interface port-channel101
-  switchport mode trunk
-  switchport trunk native vlan 401
-  mtu 9216
-  speed 10000
-
-interface port-channel103
-  no switchport
-
-interface port-channel104
-  switchport mode trunk
-  switchport trunk native vlan 401
-  switchport trunk allowed vlan 401-403
-  mtu 9216
-
-interface port-channel106
-  no switchport
-
-interface port-channel200
-  switchport mode trunk
-  switchport trunk allowed vlan 101-105
-  spanning-tree port type edge trunk
-  speed 10000
-  vpc 200
 
 interface Ethernet1/1
   switchport mode trunk
@@ -261,14 +151,8 @@ interface Ethernet1/2
   channel-group 11
 
 interface Ethernet1/3
-  switchport mode trunk
-  speed 10000
-  channel-group 10 mode active
 
 interface Ethernet1/4
-  switchport mode trunk
-  speed 10000
-  channel-group 10 mode active
 
 interface Ethernet1/5
   description L3 Link
@@ -283,16 +167,8 @@ interface Ethernet1/6
 interface Ethernet1/7
 
 interface Ethernet1/8
-  switchport mode trunk
-  switchport trunk allowed vlan 101-105
-  speed 10000
-  channel-group 100 mode active
 
 interface Ethernet1/9
-  switchport mode trunk
-  switchport trunk allowed vlan 101-105
-  speed 10000
-  channel-group 100 mode active
 
 interface Ethernet1/10
 
@@ -303,25 +179,10 @@ interface Ethernet1/12
 interface Ethernet1/13
 
 interface Ethernet1/14
-  switchport mode trunk
-  switchport trunk native vlan 401
-  mtu 9216
-  speed 10000
-  channel-group 101
 
 interface Ethernet1/15
-  shutdown
-  switchport access vlan 10
-  switchport trunk native vlan 401
-  switchport trunk allowed vlan 100-110
-  channel-group 99
 
 interface Ethernet1/16
-  switchport mode trunk
-  switchport trunk native vlan 401
-  switchport trunk allowed vlan 401-403
-  mtu 9216
-  channel-group 104 mode active
 
 interface Ethernet1/17
 
@@ -352,30 +213,19 @@ interface Ethernet1/29
 interface Ethernet1/30
 
 interface Ethernet1/31
-  no switchport
-  mac-address 00bb.2cfc.1b08
-  ip address 10.131.1.90/24
-  no shutdown
 
 interface Ethernet1/32
-  no switchport
-  channel-group 106 mode active
-  no shutdown
 
 interface Ethernet1/33
 
 interface Ethernet1/34
-  no switchport
-  channel-group 106 mode active
 
 interface Ethernet1/35
 
 interface Ethernet1/36
-  switchport mode trunk
-  speed 10000
-  channel-group 10 mode active
 
 interface Ethernet1/37
+  description Configured by NETCONF
 
 interface Ethernet1/38
 
@@ -404,7 +254,6 @@ interface Ethernet1/49
 interface Ethernet1/50
 
 interface Ethernet1/51
-  mtu 9216
 
 interface Ethernet1/52
 
@@ -440,9 +289,6 @@ interface mgmt0
 interface loopback1
   ip address 172.16.0.1/32
 
-interface loopback9
-  description Configured using OpenConfig Model
-
 interface loopback30
   description My Learning Lab Loopback
 
@@ -461,25 +307,10 @@ boot nxos bootflash:/nxos.9.3.3.bin sup-1
 router ospf 1
   router-id 172.16.0.1
   passive-interface default
-router bgp 1
-  router-id 10.10.40.41
+router bgp 65535
+  router-id 172.16.0.1
+  timers prefix-peer-timeout 30
   address-family ipv4 unicast
-  address-family l2vpn evpn
-  neighbor 192.0.2.2
-    remote-as 1
-    log-neighbor-changes
-    address-family ipv4 unicast
-      send-community
-      send-community extended
-    address-family l2vpn evpn
-      send-community
-      send-community extended
-  vrf telco-tenet
-    address-family ipv4 unicast
-      network 10.40.100.0/24
-evpn
-  vni 123 l2
-    route-target import 1:2
-    route-target export 1:2
-
-no logging console
+    network 172.16.0.0/16
+  neighbor 172.16.0.2
+    remote-as 65535

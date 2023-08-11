@@ -48,7 +48,7 @@
     # newline and store them on disk.
     - name: "SYS >> Write {{ hash_type }} hashes to disk"
       ansible.builtin.copy:
-        content: "{{ HASHLIST | join(newline_sequence) }}"
+        content: "{{ HASHLIST | join(newline_sequence) }}{{ newline_sequence }}"
         dest: "{{ OUTPUT_DIR }}/{{ hash_type }}_hashes.txt"
         mode: "0444"
       when: "hash_type"

@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 7122 bytes
+Current configuration : 7173 bytes
 !
-! Last configuration change at 17:00:57 UTC Thu Aug 10 2023
+! Last configuration change at 11:05:07 UTC Fri Aug 11 2023 by admin
 !
 version 17.9
 service timestamps debug datetime msec
@@ -18,6 +18,7 @@ boot-start-marker
 boot-end-marker
 !
 !
+no logging console
 no aaa new-model
 !
 !
@@ -151,7 +152,7 @@ interface GigabitEthernet1
  negotiation auto
 !
 interface GigabitEthernet2
- description Network Interface
+ description Configured By YangSuit
  no ip address
  shutdown
  negotiation auto
@@ -196,6 +197,7 @@ Thanks for stopping by.
 ^C
 !
 line con 0
+ exec-timeout 0 0
  stopbits 1
 line aux 0
 line vty 0 4

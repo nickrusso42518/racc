@@ -285,29 +285,28 @@ service timestamps log datetime msec
 
 If `hash_type` is not a false-y value (such as Boolean `false` or `null`),
 you'll see a `*_hashes.txt` file as well. This file contains a two-column
-CSV file with the hash first and the filename second.
+CSV file with the hash first and the filename second. You can double-check
+the hash computations using CLI commands such as `md5sum`, which should
+match the hashes computed by Ansible.
 
 ```
-$ tree --charset=ascii
-.
-|-- csr1_20230810T135247
-.   |-- md5_hashes.txt
-.   |-- show_inventory.txt
-.   |-- show_license_all.txt
-.   |-- show_running-config.txt
-.   `-- show_version.txt
+$ cat md5_hashes.txt
+764c8f490b9038afe5a618854bb21852,files/csr1_20230811T074823/show_running-config.txt
+fcd7bfac12290c1d7bd94bc195504d37,files/csr1_20230811T074823/show_inventory.txt
+d3eaa829011e49cf04603ee926208a17,files/csr1_20230811T074823/show_license_all.txt
+705640cd7519ce509b373f3243c45688,files/csr1_20230811T074823/show_version.txt
 
-$ cat csr1_20230810T135247/md5_hashes.txt
-2860be7f5bdde30faeb73368b8420e4e,files/csr1_20230810T135247/show_running-config.txt
-7515812af4e1d1d980c382a2baf25e20,files/csr1_20230810T135247/show_inventory.txt
-c2a07965c62c27b74b33f02308c5771c,files/csr1_20230810T135247/show_license_all.txt
-28d8892d1939827858f050efc0984be1,files/csr1_20230810T135247/show_version.txt
+$ column -s, -t md5_hashes.txt
+764c8f490b9038afe5a618854bb21852  files/csr1_20230811T074823/show_running-config.txt
+fcd7bfac12290c1d7bd94bc195504d37  files/csr1_20230811T074823/show_inventory.txt
+d3eaa829011e49cf04603ee926208a17  files/csr1_20230811T074823/show_license_all.txt
+705640cd7519ce509b373f3243c45688  files/csr1_20230811T074823/show_version.txt
 
-$ column -s, -t csr1_20230810T135247/md5_hashes.txt 
-2860be7f5bdde30faeb73368b8420e4e  files/csr1_20230810T135247/show_running-config.txt
-7515812af4e1d1d980c382a2baf25e20  files/csr1_20230810T135247/show_inventory.txt
-c2a07965c62c27b74b33f02308c5771c  files/csr1_20230810T135247/show_license_all.txt
-28d8892d1939827858f050efc0984be1  files/csr1_20230810T135247/show_version.txt
+$ md5sum show*
+fcd7bfac12290c1d7bd94bc195504d37  show_inventory.txt
+d3eaa829011e49cf04603ee926208a17  show_license_all.txt
+764c8f490b9038afe5a618854bb21852  show_running-config.txt
+705640cd7519ce509b373f3243c45688  show_version.txt
 ```
 
 Finally, the playbook prints out a shell command that can be copy/pasted by

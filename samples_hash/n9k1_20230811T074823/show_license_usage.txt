@@ -22,5 +22,5 @@ NETWORK_SERVICES_PKG          No    -   Unused             -
 NXOS_ADVANTAGE_M8-16          No    -   Unused             -
 NXOS_ESSENTIALS_M8-16         No    -   Unused             -
 FC_PORT_ACTIVATION_PKG        No    0   Unused             -
-LAN_ENTERPRISE_SERVICES_PKG   No    -   In use             Honor Start 1D 6H
+LAN_ENTERPRISE_SERVICES_PKG   No    -   In use             Honor Start 46M 8S
 --------------------------------------------------------------------------------

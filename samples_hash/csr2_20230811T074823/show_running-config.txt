@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 5178 bytes
+Current configuration : 5545 bytes
 !
-! Last configuration change at 17:02:37 UTC Thu Aug 10 2023 by developer
+! Last configuration change at 10:59:41 UTC Fri Aug 11 2023 by developer
 !
 version 16.9
 service timestamps debug datetime msec
@@ -47,6 +47,9 @@ subscriber templating
 ! 
 ! 
 ! 
+!
+sampler AMMAR
+ mode random 1 out-of 20
 !
 multilink bundle-name authenticated
 !
@@ -149,15 +152,14 @@ policy-map 100M
 ! 
 !
 !
-interface Loopback2
- description My second RESTCONF loopback
- ip address 10.2.1.1 255.255.255.0
-!
 interface Loopback55
  description test55
  ip address 192.168.10.1 255.255.255.255
  service-policy input 200M
  service-policy output 200M
+!
+interface Loopback100
+ ip address 100.100.100.100 255.255.255.255
 !
 interface Loopback500
  description test interface
@@ -166,6 +168,21 @@ interface Loopback500
 interface Loopback501
  description MOK
  ip address 172.31.11.11 255.255.255.0
+!
+interface Loopback1011
+ description Configured by RESTCONF
+ ip address 10.16.10.1 255.255.255.0
+!
+interface Loopback1012
+ description Configured by RESTCONF
+ ip address 10.16.11.1 255.255.255.0
+!
+interface Loopback1013
+ description Configured by RESTCONF
+ ip address 10.16.12.1 255.255.255.0
+!
+interface Loopback1014
+ ip address 10.16.13.1 255.255.255.0
 !
 interface GigabitEthernet1
  description MANAGEMENT INTERFACE - DON'T TOUCH ME

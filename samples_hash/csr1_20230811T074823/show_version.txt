@@ -17,9 +17,8 @@ software.
 
 
 ROM: IOS-XE ROMMON
-
-Cat8000V uptime is 22 minutes
-Uptime for this control processor is 23 minutes
+Cat8000V uptime is 2 hours, 47 minutes
+Uptime for this control processor is 2 hours, 48 minutes
 System returned to ROM by reload
 System image file is "bootflash:packages.conf"
 Last reload reason: reload
@@ -59,7 +58,7 @@ Processor board ID 9UWS2FADP45
 Router operating mode: Autonomous
 3 Gigabit Ethernet interfaces
 32768K bytes of non-volatile configuration memory.
-3965344K bytes of physical memory.
+3965352K bytes of physical memory.
 5234688K bytes of virtual hard disk at bootflash:.
 
 Configuration register is 0x2102
